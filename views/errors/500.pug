@@ -1,9 +1,9 @@
 
 extends ../layout
 block dependencies
-    - var pageTitle = "Server error"
+    - var pageTitle = "服务器错误"
 block content
     .container.norctn
-        h1 Server error
-        p.text-muted.lead We're sorry, but we had trouble handling that request. Please try making it again, or #[a(href="https://github.com/dynastic/place/issues/new") open an issue] if it persists.
-        a(href="/") &laquo; Go to home page
+        h1 服务器错误
+        p.text-muted.lead 很抱歉，我们在处理这个请求时遇到了麻烦。如果问题仍然存在，请重试，或者 #[a(href="https://github.com/dynastic/place/issues/new") 提交issue]。
+        a(href="/") &laquo; 返回主页
