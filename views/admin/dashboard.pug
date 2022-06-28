@@ -11,26 +11,26 @@ mixin renderDashboardStat(id, name, underName, moreInfo)
                 br
                 small #{moreInfo}
 block adminDependencies
-    - var js = ["/js/build/admin_dashboard.js", "https://cdn.jsdelivr.net/gh/rmm5t/jquery-timeago@180864a9c544a49e43719b457250af216d5e4c3a/jquery.timeago.js"];
+    - var js = ["/js/build/admin_dashboard.js", "https://cdn.bootcdn.net/ajax/libs/jquery-timeago/1.6.7/jquery.timeago.js"];
     - var jsSnippets = [`loadRecentActionsIntoContainer($("#actions-ctn"), 10, false, false)`];
 block adminContent
-    h1.page-header Dashboard
+    h1.page-header 仪表盘
     // Status Updates
     .row.placeholders
-        +renderDashboardStat("users-online", "Users online", "right now", null)
-        +renderDashboardStat("new-accounts", "New accounts", "in the last 24 hours", null)
-        +renderDashboardStat("pixels-placed", "Pixels placed", "in the last 24 hours", null)
-        +renderDashboardStat("pixels-placed-2", "Pixels placed", "per minute", "(averaged from last 20 minutes)")
+        +renderDashboardStat("users-online", "在线用户", "当前", null)
+        +renderDashboardStat("new-accounts", "新账户", "过去24小时内", null)
+        +renderDashboardStat("pixels-placed", "绘制像素", "过去24小时内", null)
+        +renderDashboardStat("pixels-placed-2", "绘制像素", "每分钟", "(过去20分钟内平均)")
     if user.admin
         // Administrator Actions
         .section-heading
-            h2.sub-header Administrator Actions
-        .content#admin-actions Loading…
+            h2.sub-header 管理员操作
+        .content#admin-actions 加载中
         - jsSnippets.push(`$("#admin-actions").html(renderServerActions())`);
     // Recent Actions
     .section-heading
-        h2.sub-header Recent Actions
-        a(href="/admin/actions") See all &raquo;
+        h2.sub-header 当前操作
+        a(href="/admin/actions") 查看全部 &raquo;
     .dashboard-actions-ctn.compact#actions-ctn
     if user.admin
         form#broadcastForm: .dialog-ctn
@@ -41,22 +41,22 @@ block adminContent
                     .active(tab-name="sign-up")
                         .heading
                             span.site #{config.siteName}
-                            h1 Send Admin Broadcast
-                            p.subhead Send a message to all users currently viewing connected to the websockets.
+                            h1 发送管理广播
+                            p.subhead 发送一个消息给所有当前查看连接到websocket的用户s。
                         .content
-                            label.sr-only(for="inputBroadcastTitle") Title (optional)
-                            input.form-control#inputBroadcastTitle(type="text", placeholder="Title (optional)")
-                            label.sr-only(for="inputBroadcastMessage") Message
-                            input.form-control#inputBroadcastMessage(type="text", placeholder="Message")
-                            label.sr-only(for="inputBroadcastTitle") Style
+                            label.sr-only(for="inputBroadcastTitle") 标题（可选）
+                            input.form-control#inputBroadcastTitle(type="text", placeholder="标题（可选）")
+                            label.sr-only(for="inputBroadcastMessage") 信息
+                            input.form-control#inputBroadcastMessage(type="text", placeholder="信息")
+                            label.sr-only(for="inputBroadcastTitle") 样式
                             select.selectpicker.form-control#inputBroadcastStyle
-                                option(value="info") Informative
-                                option(value="success") Success
-                                option(value="warning") Warning
-                                option(value="danger") Danger
-                            label.sr-only(for="inputBroadcastTimeout") Timeout
-                            input.form-control#inputBroadcastTimeout(type="number", placeholder="Timeout", value="0", aria-describedby="inputBroadcastTimeoutHelpBlock")
-                            small.text-muted.help-block#inputBroadcastTimeoutHelpBlock How long to wait before automatically dismissing the alert in seconds. Enter #[strong 0] to never automatically dismiss.
+                                option(value="info") 信息式
+                                option(value="success") 成功
+                                option(value="warning") 警告
+                                option(value="danger") 危险
+                            label.sr-only(for="inputBroadcastTimeout") 逾时
+                            input.form-control#inputBroadcastTimeout(type="number", placeholder="持续时间", value="0", aria-describedby="inputBroadcastTimeoutHelpBlock")
+                            small.text-muted.help-block#inputBroadcastTimeoutHelpBlock 在多久后自动解除提醒（以秒为单位）。 输入 #[strong 0] 禁用自动解除。
                 .dialog-footer.align-end
-                    button.btn.btn-popping.btn-default(type="button", data-dialog-dismiss=true) Cancel
-                    button.btn.btn-popping.btn-primary(type="submit") Broadcast
+                    button.btn.btn-popping.btn-default(type="button", data-dialog-dismiss=true) 取消
+                    button.btn.btn-popping.btn-primary(type="submit") 发布
