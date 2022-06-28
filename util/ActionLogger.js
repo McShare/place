@@ -4,28 +4,28 @@ const Action = require("../models/action");
 var actions = {
     // Normal user actions
     signIn: {
-        displayName: "Sign in",
-        inlineDisplayName: "Signed in",
+        displayName: "登录",
+        inlineDisplayName: "已登陆",
         category: "auth"
     },
     signUp: {
-        displayName: "Sign up",
-        inlineDisplayName: "Signed up",
+        displayName: "注册",
+        inlineDisplayName: "已注册",
         category: "auth"
     },
     signOut: {
-        displayName: "Sign out",
-        inlineDisplayName: "Signed out",
+        displayName: "登出",
+        inlineDisplayName: "已登出",
         category: "auth"
     },
     changePassword: {
-        displayName: "Change password",
-        inlineDisplayName: "Changed password",
+        displayName: "更改密码",
+        inlineDisplayName: "密码已更改",
         category: "account"
     },
     deactivate: {
-        displayName: "Deactivate own account",
-        inlineDisplayName: "Deactivated their account",
+        displayName: "禁用账户",
+        inlineDisplayName: "账户已禁用",
         category: "account"
     },
     delete: {
@@ -34,11 +34,11 @@ var actions = {
         category: "account"
     },
     place: {
-        displayName: "Place pixel",
-        inlineDisplayName: "Placed a pixel",
+        displayName: "绘制像素",
+        inlineDisplayName: "绘制了一个像素",
         category: "gameplay",
         hideInfo: true,
-        sentenceEndTextFormatting: " at <a href=\"/#x=${x}&y=${y}\">(${x.toLocaleString()}, ${y.toLocaleString()})</a>"
+        sentenceEndTextFormatting: " 在 <a href=\"/#x=${x}&y=${y}\">(${x.toLocaleString()}, ${y.toLocaleString()})</a>"
     },
     sendChatMessage: {
         displayName: "Send chat message",

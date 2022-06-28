@@ -15,11 +15,11 @@ function AdminRouter(app) {
     });
 
     router.get("/actions", app.modMiddleware, function(req, res) {
-        req.responseFactory.sendRenderedResponse("admin/actions", {title: "Recent Actions", modOnly: false});
+        req.responseFactory.sendRenderedResponse("admin/actions", {title: "最近操作", modOnly: false});
     });
 
     router.get("/log", app.modMiddleware, function(req, res) {
-        req.responseFactory.sendRenderedResponse("admin/actions", {title: "Moderator Log", modOnly: true});
+        req.responseFactory.sendRenderedResponse("admin/actions", {title: "版主日志", modOnly: true});
     });
 
     router.get("/users", app.modMiddleware, function(req, res) {
@@ -27,14 +27,14 @@ function AdminRouter(app) {
     });
 
     router.get("/users/similar/:userID", app.modMiddleware, function(req, res) {
-        function renderError(msg = "An unknown error occurred.") {
+        function renderError(msg = "发生未知错误。") {
             req.responseFactory.sendRenderedResponse("admin/similar_users_error", { errorMsg: msg });
         }
-        if(!req.params.userID || req.params.userID == "") return renderError("You did not specify a user ID to look up.");
+        if(!req.params.userID || req.params.userID == "") return renderError("您没有指定要查找的用户ID。");
         User.findById(req.params.userID).then((user) => {
-            if(!req.user.canPerformActionsOnUser(user)) return renderError("You may not perform actions on this user.");
+            if(!req.user.canPerformActionsOnUser(user)) return renderError("您不能对该用户执行操作。");
             req.responseFactory.sendRenderedResponse("admin/similar_users", { target: user });
-        }).catch((err) => renderError("Could not find a user by that ID."));
+        }).catch((err) => renderError("无法通过该ID找到用户。"));
     });
 
     router.get("/pixels", app.modMiddleware, function(req, res) {
