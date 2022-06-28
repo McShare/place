@@ -7,9 +7,9 @@ block content
         hr
         div !{md}
         hr
-        p.text-muted If you agree with the new Terms of Service, click #[strong 同意] to continue to #{config.siteName}. If you do not agree to the new Terms of Service, you may not use #{config.siteName}, click #[strong Disagree] to be signed out.
+        p.text-muted 如果您同意新的服务条款，请单击 #[strong 同意] 以继续使用 #{config.siteName}。如果您不同意新的服务条款，则不能继续使用 #{config.siteName}，点击 #[strong Disagree] 退出。
         form(method="POST")
             input(type='hidden', name='_csrf', value=_csrf)
             input(type="hidden", name="tosAccepted", value="true")
             .
-                #[input.btn.btn-success(type="submit", value="Agree")] #[a.btn.btn-danger(href="/signout?redirectURL=" + redirectURLPart) Disagree]
+                #[input.btn.btn-success(type="submit", value="同意")] #[a.btn.btn-danger(href="/signout?redirectURL=" + redirectURLPart) 不同意]
