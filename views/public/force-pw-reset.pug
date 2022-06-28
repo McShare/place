@@ -1,20 +1,20 @@
 extends ../layout
 block dependencies
-    - var pageTitle = "Reset your Password";
+    - var pageTitle = "重设你的密码";
     - var css = ["/css/signin.css"];
     - if (typeof error === "undefined") error = null;
 block content
     .container
         form.form-signin(method="POST", action="/force-pw-reset")
             input(type='hidden', name='_csrf', value=_csrf)
-            h2.form-signin-heading Reset your Password
-            p You are required to change your password to continue using #{config.siteName}.
+            h2.form-signin-heading 重设你的密码
+            p 您需要修改密码才能继续使用g #{config.siteName}.
             br
-            label.sr-only(for="inputPassword") Password
+            label.sr-only(for="inputPassword") 密码
             input.form-control#inputPassword(type="password", placeholder="Password", name="password", required, autofocus)
-            label.sr-only(for="inputPasswordC") Password (again)
+            label.sr-only(for="inputPasswordC") 重复密码
             input.form-control#inputPasswordC(type="password", placeholder="Password (again)", name="confirmPassword", required)
-            button.btn.btn-lg.btn-primary.btn-block(type="submit") Reset Password
+            button.btn.btn-lg.btn-primary.btn-block(type="submit") 重设密码
             if error
                 br
                 .alert.alert-danger #[strong Uh oh!] #{error.message}

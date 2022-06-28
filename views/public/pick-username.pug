@@ -19,15 +19,15 @@ block content
                     label
                         input(type="checkbox", name="agreeToGuidelines")
                         span
-                            | I agree to abide by the 
+                            | 我同意遵守 
                             if hasTOS
-                                a(href="/tos") Terms of Service
+                                a(href="/tos") 服务条款
                             if hasTOS && hasCommunityGuidelines
-                                |  and 
+                                |  和 
                             if hasCommunityGuidelines
-                                a(href="/guidelines") Community Guidelines
+                                a(href="/guidelines") 社区准则
                             | .
-            button.btn.btn-lg.btn-primary.btn-block(type="Submit") Save
+            button.btn.btn-lg.btn-primary.btn-block(type="Submit") 保存
             if error
                 br
-                .alert.alert-danger #[strong Uh oh!] #{error.message}
+                .alert.alert-danger #[strong 啊这！] #{error.message}

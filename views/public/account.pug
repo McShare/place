@@ -4,11 +4,11 @@ block dependencies
     - if (isSelf) var overrideNavPath = "/account";    
     - var pixel = profileUserInfo.latestPixel;
     - var boardImageCorrection = (1000 / config.boardSize) * 4;
-    - var pageTitle = isSelf ? "Account Details" : `${profileUser.name}'s Profile`;
+    - var pageTitle = isSelf ? "账户信息" : `${profileUser.name} 的个人资料`;
     - var pageDesc = isSelf ? `View information about your ${config.siteName} account.` : `View ${profileUser.name}'s profile on ${config.siteName}.`;
     - var css = ["/css/dashboard.css", "/css/profile.css"];
     - var navbarSupportsTopMode = !!profileUserInfo.latestPixel;
-    - js = ["/js/tooltip.js", "/js/build/account.js", "https://cdn.jsdelivr.net/gh/rmm5t/jquery-timeago@180864a9c544a49e43719b457250af216d5e4c3a/jquery.timeago.js"];
+    - js = ["/js/tooltip.js", "/js/build/account.js", "https://cdn.bootcdn.net/ajax/libs/jquery-timeago/1.6.7/jquery.timeago.js"];
     - jsModSnippets = [`  $(document).ready(function() {
     -    $("#profile-mod-tools-ctn").html(renderUserActions(${JSON.stringify(profileUser)}));
     -  });`];
@@ -45,16 +45,16 @@ block content
                     h4 Important infomation regarding your #{config.siteName} account:
                     p !{config.maintenance.notice}
             if hasNewPassword
-                .alert.alert-success #[strong Success!] Your password has been changed successfully!
+                .alert.alert-success #[strong Success!] 你的密码修改成功啦~
                 hr
-            h1 About #{isSelf ? "me" : "them"}
+            h1 关于 #{isSelf ? "我" : "他"}
             .user-details
-                p #[strong Joined] #[time.timeago(datetime=profileUser.creationDate.toISOString(), title=profileUser.creationDate.toLocaleString()) on loading date].
+                p #[strong 加入于] #[time.timeago(datetime=profileUser.creationDate.toISOString(), title=profileUser.creationDate.toLocaleString()) on loading date].
                 if profileUser.lastPlace
-                    p #[strong Last placed] #[time.timeago(datetime=profileUser.lastPlace.toISOString(), title=profileUser.lastPlace.toLocaleString())]
+                    p #[strong 最后绘制于] #[time.timeago(datetime=profileUser.lastPlace.toISOString(), title=profileUser.lastPlace.toLocaleString())]
                         if pixel && pixel.isLatest
                             .
-                                #{" at "}
+                                #{" 在 "}
                             a(href=`/#x=${pixel.point.x}&y=${pixel.point.y}`) (#{pixel.point.x.toLocaleString()}, #{pixel.point.y.toLocaleString()})
                         . 
                             .
@@ -62,7 +62,7 @@ block content
             if user && user.admin
                 hr
                 h1 Access Data
-                h4 IP Addresses (hashed)
+                h4 IP地址 (hashed)
                 ul
                     each ip in profileUser.ipAddresses
                         li= ip
@@ -76,11 +76,11 @@ block content
                         li= ua
             if isSelf && !profileUser.isOauth
                 hr
-                h1 My account
-                | #[a.btn.btn-success(data-toggle="modal", id=`${has2FA ? "dis" : "en"}ableTwoFactorAuth`) #{has2FA ? "Dis" : "En"}able Two-Factor Authentication]
-                | #[a.btn.btn-info(data-toggle="modal", data-target="#changePassword") Change Password]
-                | #[a.btn.btn-warning(data-toggle="modal", data-target="#downloadAccount") Download Account Data]
-                | #[a.btn.btn-danger(data-toggle="modal", data-target="#deactivateAccount") Deactivate / Delete Account]
+                h1 我的账户
+                | #[a.btn.btn-success(data-toggle="modal", id=`${has2FA ? "禁用" : "启用"}双因素验证`) #{has2FA ? "禁用" : "启用"}双因素验证]
+                | #[a.btn.btn-info(data-toggle="modal", data-target="#changePassword") 更改密码]
+                | #[a.btn.btn-warning(data-toggle="modal", data-target="#downloadAccount") 下载账户数据]
+                | #[a.btn.btn-danger(data-toggle="modal", data-target="#deactivateAccount") 注销 / 删除账户]
             if user && user.canPerformActionsOnUser(profileUser)
                 hr
                 h1 Moderator tools
