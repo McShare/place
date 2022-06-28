@@ -5,7 +5,7 @@ block dependencies
     - var pixel = profileUserInfo.latestPixel;
     - var boardImageCorrection = (1000 / config.boardSize) * 4;
     - var pageTitle = isSelf ? "账户信息" : `${profileUser.name} 的个人资料`;
-    - var pageDesc = isSelf ? `View information about your ${config.siteName} account.` : `View ${profileUser.name}'s profile on ${config.siteName}.`;
+    - var pageDesc = isSelf ? `查看有关您的 ${config.siteName} 帐户的信息。` : `在 ${config.siteName} 上查看 ${profileUser.name} 的个人资料。`;
     - var css = ["/css/dashboard.css", "/css/profile.css"];
     - var navbarSupportsTopMode = !!profileUserInfo.latestPixel;
     - js = ["/js/tooltip.js", "/js/build/account.js", "https://cdn.bootcdn.net/ajax/libs/jquery-timeago/1.6.7/jquery.timeago.js"];
@@ -32,20 +32,20 @@ block content
                         if rank !== null
                             div
                                 span.value ##{profileUserInfo.statistics.leaderboardRank.toLocaleString()}
-                                span.name Global rank
+                                span.name 全局排名
                         div
                             span.value= profileUser.placeCount.toLocaleString()
-                            span.name pixel#{profileUser.placeCount == 1 ? "" : "s"} placed
+                            span.name 绘制总数
                         if profileUserInfo.statistics.placesThisWeek !== null
                             div
                                 span.value= profileUserInfo.statistics.placesThisWeek.toLocaleString()
-                                span.name pixel#{profileUserInfo.statistics.placesThisWeek == 1 ? "" : "s"} this week
+                                span.name 本周像素
             if isSelf && config.maintenance.notice
                 div.alert.alert-danger
-                    h4 Important infomation regarding your #{config.siteName} account:
+                    h4 关于你 #{config.siteName} 账户的重要信息：
                     p !{config.maintenance.notice}
             if hasNewPassword
-                .alert.alert-success #[strong Success!] 你的密码修改成功啦~
+                .alert.alert-success #[strong 成功！] 你的密码修改成功啦~
                 hr
             h1 关于 #{isSelf ? "我" : "他"}
             .user-details
@@ -61,7 +61,7 @@ block content
             //- Disable this section for OAuth users because they cannot deactivate or change passwords at this time.
             if user && user.admin
                 hr
-                h1 Access Data
+                h1 访问数据
                 h4 IP地址 (hashed)
                 ul
                     each ip in profileUser.ipAddresses
@@ -83,7 +83,7 @@ block content
                 | #[a.btn.btn-danger(data-toggle="modal", data-target="#deactivateAccount") 注销 / 删除账户]
             if user && user.canPerformActionsOnUser(profileUser)
                 hr
-                h1 Moderator tools
+                h1 版主工具
                 #profile-mod-tools-ctn
     if isSelf && !profileUser.isOauth
         .modal.fade#changePassword(tabindex="-1", role="dialog")
@@ -92,79 +92,79 @@ block content
                     form.form-horizontal#changePasswordForm
                         .modal-header
                             button.close(type="button", data-dimiss="modal", aria-label="Close"): span(aria-hidden="true") &times;
-                            h4.modal-title Change Password
+                            h4.modal-title 更改密码
                         .modal-body
-                            p Change your password using your current password. #[Make sure you remember the new password, as this cannot be undone without it.]
+                            p 使用您当前的密码更改您的密码。 #[strong 请确定您记住了新密码，因为没有它就无法找回账户。]
                             .form-group
-                                label.col-sm-3.control-label(for="inputChangePasswordCurrent") Password
-                                .col-sm-9: input.form-control#inputChangePasswordCurrent(type="password", placeholder="Current Password", name="password")
+                                label.col-sm-3.control-label(for="inputChangePasswordCurrent") 密码
+                                .col-sm-9: input.form-control#inputChangePasswordCurrent(type="password", placeholder="当前密码", name="password")
                             .form-group
-                                label.col-sm-3.control-label(for="inputChangePasswordNew") New Password
-                                .col-sm-9: input.form-control#inputChangePasswordNew(type="password", placeholder="New Password", name="newPassword")
+                                label.col-sm-3.control-label(for="inputChangePasswordNew") 新密码
+                                .col-sm-9: input.form-control#inputChangePasswordNew(type="password", placeholder="新密码", name="newPassword")
                             .form-group
-                                .col-sm-9.col-sm-offset-3: input.form-control#inputChangePasswordNew2(type="password", placeholder="New Password (again)", name="newConfPassword")
+                                .col-sm-9.col-sm-offset-3: input.form-control#inputChangePasswordNew2(type="password", placeholder="确认新密码", name="newConfPassword")
                             .alert.hidden(role="alert", name="changePasswordProgressAlert")
                         .modal-footer
-                            button.btn.btn-default(type="button", data-dismiss="modal") Cancel
-                            button.btn.btn-primary(type="submit") Change Password
+                            button.btn.btn-default(type="button", data-dismiss="modal") 取消
+                            button.btn.btn-primary(type="submit") 更改密码
         .modal.fade#deactivateAccount(tabindex="-1", role="dialog")
             .modal-dialog(role="document")
                 .modal-content
                     form.form-horizontal#deactivateAccountForm
                         .modal-header
                             button.close(type="button", data-dimiss="modal", aria-label="Close"): span(aria-hidden="true") &times;
-                            h4.modal-title Deactivate or Delete your Account
+                            h4.modal-title 停用或删除您的帐户
                         .modal-body
-                            p Are you sure you want to deactivate or delete your account?
-                            p Before you do so:
+                            p 您确定要停用或删除您的帐户吗？
+                            p 在你这样做之前：
                             ul
-                                li Deactivated accounts can be recovered by reauthenticating.
-                                li Deleted accounts #[strong cannot be recovered after 7 days].
-                                li You can cancel your account deletion before 7 days, by logging back in.
-                                li Your pixels will remain, but the creator will be shown as "Deactivated/Deleted account".
-                            p If you are still sure, re-enter your account's current password to deactivate or delete it.
+                                li 可以通过重新验证来恢复停用的帐户。
+                                li 已删除的帐户#[strong 7 天后无法再恢复]。
+                                li 您可以在 7 天前通过重新登录取消帐户删除。
+                                li 您的像素将保留，但创建者将显示为“已停用/已删除帐户”。
+                            p 如果您仍然确定，请重新输入您帐户的当前密码以停用或删除它。
                             .form-group
-                                label.col-sm-3.control-label(for="inputDeactivatePassword") Password
-                                .col-sm-9: input.form-control#inputDeactivatePassword(type="password", placeholder="Password", name="password")
+                                label.col-sm-3.control-label(for="inputDeactivatePassword") 密码
+                                .col-sm-9: input.form-control#inputDeactivatePassword(type="password", placeholder="密码", name="password")
                             .alert.hidden(role="alert", name="deactivateAccountProgressAlert")
                         .modal-footer
-                            button.btn.btn-default(type="button", data-dismiss="modal") Cancel
-                            button.btn.btn-warning(type="button", id="deactivateButton") Deactivate
-                            button.btn.btn-danger(type="button", id="deleteButton") Delete
+                            button.btn.btn-default(type="button", data-dismiss="modal") 取消
+                            button.btn.btn-warning(type="button", id="deactivateButton") 停用
+                            button.btn.btn-danger(type="button", id="deleteButton") 删除
         .modal.fade#downloadAccount(tabindex="-1", role="dialog")
             .modal-dialog(role="document")
                 .modal-content
                     .modal-header
                         button.close(type="button", data-dimiss="modal", aria-label="Close"): span(aria-hidden="true") &times;
-                        h4.modal-title Download Account Data
+                        h4.modal-title 下载帐户数据
                     .modal-body
-                        p You may download all of the data that #{config.siteName} possesses on you.
-                        p You will be provided all of the data as one JSON file, containing any and all data relating to your usage of the site. The file may be large in size, and could take a while to process.
+                        p 您可以下载 #{config.siteName} 在您身上拥有的所有数据。
+                        p 您将获得一个包含数据的 JSON 文件，其中包含与您对网站的使用相关的所有数据。该文件可能很大，并且可能需要一段时间来处理。
                     .modal-footer
-                        button.btn.btn-default(type="button", data-dismiss="modal") Cancel
-                        a.btn.btn-warning(type="submit", href="/api/account-data") Download
+                        button.btn.btn-default(type="button", data-dismiss="modal") 取消
+                        a.btn.btn-warning(type="submit", href="/api/account-data") 下载
         unless has2FA
             .modal.fade#enableTOTP(tabindex="-1", role="dialog")
                 .modal-dialog(role="document")
                     .modal-content
                             .modal-header
                                 button.close(type="button", data-dimiss="modal", aria-label="Close"): span(aria-hidden="true") &times;
-                                h4.modal-title Enable Two-Factor Authentication
+                                h4.modal-title 启用两因素身份验证
                             .modal-body
                                 .row.row-fluid
                                     .col-sm-8
-                                        p To set up two-factor authentication for your #{config.siteName} account, follow the listed instructions.
+                                        p 要为您的 #{config.siteName} 帐户设置双重身份验证，请按照列出的说明进行操作。
                                         ol
-                                            li: p Install and open a Two-Factor authentication app that supports TOTP. Popular apps for both iOS and Android include #[a(href="https://support.google.com/accounts/answer/1066447") Google Authenticator], #[a(href="https://duo.com/product/trusted-users/two-factor-authentication/duo-mobile") Duo Mobile], and #[a(href="https://authy.com/download/") Authy].
-                                            li: p Add your #{config.siteName} account by scanning the QR code #[span.hidden-xs to the right]#[span.visible-xs-inline below], or entering the text code underneath it.
-                                            li: p Enter the 6-digit code that is generated by the application:
+                                            li: p 安装并打开支持 TOTP 的双重身份验证应用程序。适用于 iOS 和 Android 的热门应用包括 #[a(href="https://support.google.com/accounts/answer/1066447") Google Authenticator]、#[a(href="https://duo.com /product/trusted-users/two-factor-authentication/duo-mobile") Duo Mobile]，和#[a(href="https://authy.com/download/") Authy].
+                                            li: p 通过扫描 QR 码 #[span.hidden-xs 右方]#[span.visible-xs-inline 下方] 添加您的 #{config.siteName} 帐户，或在其下方输入文本代码。
+                                            li: p 输入应用程序生成的 6 位代码：
                                                 form.form-inline#enableTOTPForm
                                                     input#totpSecretCodeInput(type='hidden', name="secret")
                                                     .input-group
-                                                        input.form-control(maxlength="6", inputmode="numeric", pattern="[0-9]{6}", name="token", placeholder="Generated token", required)
-                                                        span.input-group-btn: button.btn.btn-primary(type="submit") Verify
+                                                        input.form-control(maxlength="6", inputmode="numeric", pattern="[0-9]{6}", name="token", placeholder="生成的令牌", required)
+                                                        span.input-group-btn: button.btn.btn-primary(type="submit") 核实
                                         .alert.hidden(role="alert", name="enableTOTPAlert")
                                     .col-sm-4.align-center
                                         img#totpQRCode
                                         br
-                                        small.text-muted If you are unable to set up using a QR code, enter this code into your two-factor authentication app instead:#[br]#[code#totpSecretCode.breaks]
+                                        small.text-muted 如果您无法使用 QR 码进行设置，请将此代码输入到您的双因素身份验证应用程序中：#[br]#[code#totpSecretCode.breaks]

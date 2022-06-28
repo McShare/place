@@ -159,7 +159,7 @@ var place = {
     /**
      * @type {PlaceSocket}
      */
-    socket: new PlaceSocket("client"),
+    socket: null,
     stat() {
         this.socket.emit("stat");
     },
@@ -226,6 +226,7 @@ var place = {
             app.cursorX = e.pageX;
             app.cursorY = e.pageY;
         };
+
 
         window.onresize = () => this.handleResize();
         window.onhashchange = () => this.handleHashChange();
@@ -318,6 +319,7 @@ var place = {
     },
 
     getCanvasImage: function() {
+        console.log("Get Canvas Image");
         if(this.loadedImage) return;
         var app = this;
         this.adjustLoadingScreen("Loading…");;
@@ -374,7 +376,7 @@ var place = {
     neededPixelDate: null,
     requestPixelsAfterDate(date) {
         console.log("Requesting pixels after date " + date);
-        this.socket.send("fetch_pixels", {ts: date});
+        this.socket.emit("fetch_pixels", {ts: date});
     },
 
     setupInteraction: function() {
@@ -404,7 +406,8 @@ var place = {
                 var coord = app.getCoordinates();
                 app.hashHandler.modifyHash(coord);
             }
-        }).on("tap", (event) => {
+        })
+        .on("tap", (event) => {
             if(event.interaction.downEvent.button == 2) return event.preventDefault();
             if(!this.zooming.zooming) {
                 var cursor = app.getCanvasCursorPosition(event.pageX, event.pageY);
@@ -465,7 +468,17 @@ var place = {
     },
 
     initializeSocketConnection() {
-        this.socket.on("open", () => {
+        this.socket = io();
+        this.socket.on("error", (e) => {
+            console.error("Socket error (will reload pixels on reconnect to socket): " + e);
+            this.isOutdated = true;
+        });
+        this.socket.on("disconnect", () => {
+            console.warn("Socket disconnected from server, remembering to reload pixels on reconnect.")
+            this.isOutdated = true
+        });
+        this.socket.on("connect", () => {
+            console.log("Socket successfully connected");
             if(!this.isOutdated) return;
             if(Date.now() / 1000 - this.lastPixelUpdate > 60) {
                 // 1 minute has passed
@@ -479,22 +492,20 @@ var place = {
             }
         });
 
-        this.socket.on("close", () => {
-            this.isOutdated = true;
+        this.socket.on("tile_placed", (data) => {
+            this.liveUpdateTile(JSON.parse(data));
         });
-
-        const events = {
-            tile_placed: this.liveUpdateTile.bind(this),
-            tiles_placed: this.liveUpdateTiles.bind(this),
-            server_ready: this.getCanvasImage.bind(this),
-            user_change: this.userCountChanged.bind(this),
-            admin_broadcast: this.adminBroadcastReceived.bind(this),
-            reload_client: () => window.location.reload(),
-        };
-
-        Object.keys(events).forEach(eventName => {
-            this.socket.on(eventName, events[eventName]);
+        this.socket.on("tiles_placed", (data) => {
+            this.liveUpdateTiles(JSON.parse(data));
         });
+        this.socket.on("server_ready", () => this.getCanvasImage());
+        this.socket.on("user_change", (data) => {
+            this.userCountChanged(data);
+        });
+        this.socket.on("admin_broadcast", (data) => {
+            this.adminBroadcastReceived(JSON.parse(data));
+        });
+        this.socket.on("reload_client", () => window.location.reload());
     },
 
     get isAFK() {
@@ -511,21 +522,24 @@ var place = {
         return {x: getRandomTileNumber(), y: getRandomTileNumber()};
     },
 
-    liveUpdateTiles: function(data) {
+    liveUpdateTiles(data) {
+        console.log("Live Tiles Update");
         if(!data.pixels) return;
         data.pixels.forEach((pixel) => this.liveUpdateTile(pixel));
     },
 
-    liveUpdateTile: function (data) {
+    liveUpdateTile(data) {
+        console.log("Live Tile Update");
         this.lastPixelUpdate = Date.now() / 1000;
         this.setPixel(`#${data.colour}`, data.x, data.y);
     },
 
-    adminBroadcastReceived: function(data) {
+    adminBroadcastReceived(data) {
+        console.log("Broadcast");
         this.showAdminBroadcast(data.title, data.message, data.style || "info", data.timeout || 0);
     },
 
-    userCountChanged: function (data) {
+    userCountChanged(data) {
         if(data !== null) this.changeUserCount(data);
     },
 
@@ -1076,7 +1090,7 @@ var place = {
                     getUserInfoTableItem("Total pixels placed", data.pixel.user.statistics.totalPlaces.toLocaleString()).appendTo(userInfoCtn);
                     if(data.pixel.user.statistics.placesThisWeek !== null) getUserInfoTableItem("Pixels this week", data.pixel.user.statistics.placesThisWeek.toLocaleString()).appendTo(userInfoCtn);
                     getUserInfoDateTableItem("Account created", data.pixel.user.creationDate).appendTo(userInfoCtn);
-                    var latestCtn = getUserInfoDateTableItem("Last placed", data.pixel.user.statistics.lastPlace).appendTo(userInfoCtn);
+                    var latestCtn = getUserInfoDateTableItem("最后绘制", data.pixel.user.statistics.lastPlace).appendTo(userInfoCtn);
                     if(data.pixel.user.latestPixel && data.pixel.user.latestPixel.isLatest) {
                         var latest = data.pixel.user.latestPixel;
                         var element = $("<div>")
@@ -1491,8 +1505,8 @@ if(place.isSignedIn()) {
             var date = new Date(dateStr);
             var t = new Date(), y = new Date();
             y.setDate(y.getDate() - 1);
-            if(date.toDateString() == (new Date()).toDateString()) return "Today";
-            else if(date.toDateString() == y.toDateString()) return "Yesterday";
+            if(date.toDateString() == (new Date()).toDateString()) return "今天";
+            else if(date.toDateString() == y.toDateString()) return "昨天";
             else return date.toLocaleDateString();
         }
     }.setup();
