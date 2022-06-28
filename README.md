@@ -13,21 +13,21 @@ It's been really cool to see people use this project, whether for their artful c
 
 These instructions will help you get an instance of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project in a production environment.
 
-### Prerequisites
+### 依赖
 
-* Node 8 or **higher**
-* [MongoDB](https://www.mongodb.com) *(sorry)*
-* [Yarn package manager](https://www.yarnpkg.com)
-* An internet connection
+* Node 8 or **更高版本**
+* [MongoDB](https://www.mongodb.com) *（抱歉）*
+* [Yarn包管理](https://www.yarnpkg.com)
+* 互联网连接
 
-### Installing
+### 安装
 
-1. Copy `config/config.example.js` to `config/config.js`.
-2. Configure your Place server as you see fit by modifying the values
-   > **Important:** You must set a strong secret in the secret field to protect against cookie-spoofing attacks that could result in attacks on your site!
-3. Run `yarn install` to install the dependencies
-4. Create a new database on your instance of MongoDB and include it in `config/config.js`
-5. Finally, run `node app.js` to start the server.
+1. 复制 `config/config.example.js` 为 `config/config.js`。
+2. 通过修改这些值，按照您认为合适的方式配置Place服务器。
+   > **重要：** 您必须在Secret字段中设置一个强大的密码，以防止cookie欺骗攻击，这可能导致对您的网站的攻击!
+3. 运行 `yarn install` 以安装依赖。
+4. 在MongoDB实例上创建一个新数据库，并将其填写在 `config/config.js` 内。
+5. 最终，运行 `node app.js` 以启动服务器。
 
 ### Production Deployment
 
@@ -35,16 +35,16 @@ These instructions will help you get an instance of the project up and running o
 
 Please only host your own copy if you are willing to abide by the clearly defined [license](https://github.com/dynastic/place/blob/master/LICENSE). **Failure to comply with the listed terms will result in legal action.**
 
-When deploying, it is recommended you use a daemon to keep the server alive. We use `pm2`, but any daemon utility, such as `forever`, should work.
+部署时，建议使用守护进程保持服务器处于活动状态。 我们使用 `screen`，官方使用 `pm2`，但其实任何守护程序实用程序，如' forever '，应该都可以。
 
-#### Using pm2
+#### 使用 pm2
 
-1. Get [pm2](http://pm2.keymetrics.io) installed **globally** by running `npm i -g pm2`.
-2. Once pm2 is installed, starting Place is as simple as running `pm2 start app.js --name=Place`.
+1. 获取 [pm2](http://pm2.keymetrics.io) 通过运行 `npm i -g pm2` 进行**全局安装**。
+2. 安装了pm2之后，启动Place只需要简单的运行 `pm2 start app.js --name=Place`。
 
-You can manage your pm2 instances using `pm2 show Place`.
+您可以使用 `pm2 show Place` 来管理你的pm2实例
 
-You can instruct pm2 to save the currently running pm2 instances and start them at boot with `pm2 startup`.
+您可以指示pm2保存当前运行的pm2实例，并在引导时使用 `pm2 startup` 启动它们。
 
 #### Other notes
 
