@@ -115,7 +115,7 @@ var popoutController = {
 
         socket.on("new_message", (data) => {
             this.loadActiveUsers();
-            this.addChatMessage(data);
+            this.addChatMessage(JSON.parse(data));
         });
 
         return socket;
@@ -142,7 +142,7 @@ var popoutController = {
         placeAjax.get("/api/chat", null, null).then((response) => {
             app.messages = response.messages;
             app.layoutMessages();
-        }).catch((err) => console.log("Failed to load chat messages.", err));
+        }).catch((err) => console.log("加载聊天消息失败。", err));
     },
 
     layoutMessages: function(alwaysScrollToBottom = true) {
@@ -151,7 +151,7 @@ var popoutController = {
             var almostSameDate = now.getMonth() == date.getMonth() && now.getFullYear() == date.getFullYear();
             var isToday = now.getDate() == date.getDate();
             var isYesterday = !isToday && now.getDate() == date.getDate() - 1;
-            return `${isToday ? "Today" : (isYesterday ? "Yesterday" : date.toLocaleDateString())}, ${date.toLocaleTimeString()}`
+            return `${isToday ? "今天" : (isYesterday ? "昨天" : date.toLocaleDateString())}, ${date.toLocaleTimeString()}`
         }
         var prevHeight = null;
         if(!alwaysScrollToBottom) prevHeight = $("#chat-messages")[0].scrollHeight;
@@ -207,6 +207,7 @@ var popoutController = {
     },
 
     addChatMessage: function(message) {
+        console.log(message);
         if(this.messages.map((m) => m.id).indexOf(message.id) < 0) {
             this.messages.push(message);
             this.layoutMessages($("body").data("user-id") == message.userID);
@@ -235,7 +236,7 @@ var popoutController = {
         console.log()
         var coords = this.place.getCoordinates();
         var text = input.val();
-        placeAjax.post("/api/chat", {text: text, x: coords.x, y: coords.y}, "An unknown error occurred while trying to send your chat message.", () => {
+        placeAjax.post("/api/chat", {text: text, x: coords.x, y: coords.y}, "在试图发送聊天消息时发生了未知错误。", () => {
             btn.text("Send").removeAttr("disabled");
         }).then((response) => {
             app.ignoreChatFocus = true;
@@ -253,8 +254,8 @@ var popoutController = {
             if(response.lastUpdated) app.leaderboardUpdated = new Date(response.lastUpdated);
             app.layoutLeaderboard();
         }).catch((err) => {
-            console.log("Failed to load leaderboard data.", err);
-            app.showTextOnTab("leaderboard", "Failed to load");
+            console.log("加载排行榜数据失败。", err);
+            app.showTextOnTab("leaderboard", "加载失败");
         });
     },
 
@@ -268,11 +269,11 @@ var popoutController = {
         var tab = $("#leaderboardTab");
         tab.find("*").remove();
         if(!this.leaderboard) return this.showTextOnTab("leaderboard", "Loading…");
-        if(this.leaderboard.length <= 0) return this.showTextOnTab("leaderboard", "No leaderboard data");
+        if(this.leaderboard.length <= 0) return this.showTextOnTab("leaderboard", "无排行榜数据");
         var topPlace = $(`<div class="top-place"><i class="fa fa-trophy big-icon"></i><span class="info">Leader</span></div>`).appendTo(tab);
         var userInfo = $("<div>").addClass("leader-info").appendTo(topPlace);
         $("<a>").addClass("name").attr("href", `/@${this.leaderboard[0].username}`).text(this.leaderboard[0].username).appendTo(userInfo);
-        $("<span>").addClass("pixel-label").text("Pixels placed").appendTo(userInfo);
+        $("<span>").addClass("pixel-label").text("绘制像素").appendTo(userInfo);
         var subdetails = $("<div>").addClass("subdetails row-fluid clearfix").appendTo(userInfo);
         getStatElement("This week", this.leaderboard[0].statistics.placesThisWeek.toLocaleString()).addClass("col-xs-6").appendTo(subdetails);
         getStatElement("Total", this.leaderboard[0].statistics.totalPlaces.toLocaleString()).addClass("col-xs-6").appendTo(subdetails);
@@ -293,7 +294,7 @@ var popoutController = {
             });
         }
         if(this.leaderboardUpdated) $("<small>").addClass("last-update").text(`Last updated at ${this.leaderboardUpdated.toLocaleString()}.`).appendTo(tab);
-        $("<p>").addClass("text-muted").text("Leaderboards are calculated based on the number of pixels you have placed (that someone else hasn't overwritten) over the span of the last week. To get a spot on the leaderboard, start placing!").appendTo(tab);
+        $("<p>").addClass("text-muted").text("积分排行榜是根据你在过去一周内放置的像素数(其他人没有覆盖的像素)来计算的。要想在排行榜上占有一席之地，就开始涂鸦吧！").appendTo(tab);
     },
 
     loadActiveUsers: function() {
@@ -323,7 +324,7 @@ var popoutController = {
             var date = item.statistics.lastSeenActively;
             $("<time>").attr("datetime", date).attr("title", new Date(date).toLocaleString()).text($.timeago(date)).appendTo($("<strong>").appendTo(lastSeen));
         });
-        $("<p>").addClass("text-muted").text("Users that are both logged in and have either placed a pixel or sent a chat message in the last five minutes will appear here. This tab is updated once a minute, so data may appear delayed.").appendTo(tab);
+        $("<p>").addClass("text-muted").text("加载活动用户数据失败。同时登录并在过去五分钟内放置了像素或发送了聊天消息的用户将出现在这里。此选项卡每分钟更新一次，因此数据可能会出现延迟。").appendTo(tab);
     },
 
     isInPopOutWindow: function() {
