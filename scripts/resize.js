@@ -13,7 +13,7 @@ var doneReading = false;
 let i = 0;
 let saved = 0;
 
-mongoose.connect(config.database, {useMongoClient: true}).then(() => console.info('Connected to database'));
+mongoose.connect(config.database, {useMongoClient: true}).then(() => console.info('已连接至数据库'));
 mongoose.Promise = global.Promise;
 
 let cursor = Pixel.find().cursor();
@@ -23,7 +23,7 @@ Pixel.count().then(c => {
     count = c;
     const printStatus = () => {
         const rawPercentage = saved / count;
-        console.log(`Hey bitch we've updated ${rawPercentage * 100}% of the pixels`);
+        console.log(`嘿，我们更新了 ${rawPercentage * 100}% 个像素`);
     }
     setInterval(() => printStatus(), 15000);
 });
@@ -35,10 +35,10 @@ cursor.on('data', (pixel) => {
     pixel.yPos += 100
     
     pixel.save(function(err, n) {
-        if (err) return console.error("Error saving pixel " + err);
+        if (err) return console.error("保存像素错误 " + err);
         saved++;
         if (i === saved && doneReading) {
-            console.log(`Updated ${i} pixels`);
+            console.log(`已更新 ${i} 像素`);
             process.exit();
         }
     });
@@ -49,5 +49,5 @@ cursor.on('close', function() {
 });
 
 cursor.on('error', function(err) {
-    console.error("Error saving pixel " + err);
+    console.error("保存像素错误 " + err);
 });
