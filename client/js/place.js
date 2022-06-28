@@ -1208,7 +1208,7 @@ var place = {
             this.warps = response.warps;
             this.layoutWarps();
         }).catch((err) => {
-            console.error("Couldn't load warps: " + err);
+            console.error("无法加载标记：" + err);
             this.warps = null;
             this.layoutWarps();
         });
@@ -1229,7 +1229,7 @@ var place = {
             return warpInfo;
         }
         var warpsContainer = $("#warps-ctn");
-        if(!this.warps) return warpsContainer.text("Couldn't load warps.");
+        if(!this.warps) return warpsContainer.text("无法加载标记。");
         warpsContainer.html("");
         var warpInfoContainer = $("<div>").addClass("menu-section-content").appendTo($("<div>").addClass("menu-section-content-ctn").appendTo(warpsContainer));
         getWarpInfo(null, null, this.addNewWarpClicked, null, true).appendTo(warpInfoContainer);
@@ -1238,16 +1238,16 @@ var place = {
         } else {
             warpInfoContainer.addClass("empty");
             var explanation = $("<div>").addClass("warp-info explanation").appendTo(warpInfoContainer);
-            $("<span>").addClass("warp-title").text("Warps").appendTo(explanation);
-            $("<span>").addClass("warp-coordinates").text("Use warps to get around the canvas quickly. Save a position and warp to it later on.").appendTo(explanation);
+            $("<span>").addClass("warp-title").text("标记").appendTo(explanation);
+            $("<span>").addClass("warp-coordinates").text("使用标记快速穿过画布。保存一个位置并在以后传送。").appendTo(explanation);
         }
     },
 
     addNewWarpClicked: function(elem, event, input = null) {
-        var warpTitle = window.prompt(`Enter a title for this warp (at current position):`, input || "");
+        var warpTitle = window.prompt(`输入这个标记的名字（在当前位置）：`, input || "");
         if(!warpTitle || warpTitle.length <= 0) return;
         var pos = this.getCoordinates();
-        placeAjax.post("/api/warps", {x: pos.x, y: pos.y, name: warpTitle}, "An unknown error occurred while attempting to create your warp.").then((response) => {
+        placeAjax.post("/api/warps", {x: pos.x, y: pos.y, name: warpTitle}, "尝试创建标记时发生未知错误。").then((response) => {
             if(response.warp) this.warps.unshift(response.warp);
             this.layoutWarps();
         }).catch((err) => {
@@ -1259,7 +1259,7 @@ var place = {
         event.preventDefault();
         event.stopPropagation();
         if(elem.data("deleting") === true) return;
-        if(!window.confirm("Are you sure you want to delete this warp?")) return;
+        if(!window.confirm("您确定要删除此标记吗？")) return;
         function setDeletingState(deleting) {
             elem.data("deleting", deleting);
             var icon = elem.find("i");
@@ -1269,7 +1269,7 @@ var place = {
         setDeletingState(true);
         var warpID = elem.attr("data-warp-id");
         if(!warpID) return;
-        placeAjax.delete("/api/warps/" + warpID, null, "An unknown error occurred while attempting to delete the specified warp.", () => setDeletingState(false)).then((response) => {
+        placeAjax.delete("/api/warps/" + warpID, null, "尝试删除指定的标记时发生未知错误。", () => setDeletingState(false)).then((response) => {
             var index = this.warps.map((w) => w.id).indexOf(warpID);
             if(index >= 0) this.warps.splice(index, 1);
             this.layoutWarps();
@@ -1287,7 +1287,7 @@ var place = {
     },
     
     layoutTemplates: function() {
-        if(!this.templatesEnabled) return $("#templates-ctn").text("Coming Soon");
+        if(!this.templatesEnabled) return $("#templates-ctn").text("即将到来~");
         if(!this.templates) this.loadTemplates();
         var templatesContainer = $("#templates-ctn");
         var templateImgs = $("#template-images");
@@ -1310,8 +1310,8 @@ var place = {
         } else {
             infoContainer.addClass("empty");
             var explanation = $("<div>").addClass("warp-info template explanation").appendTo(infoContainer);
-            $("<span>").addClass("warp-title").text("Templates").appendTo(explanation);
-            $("<span>").addClass("warp-coordinates").text("Overlay an image on the canvas to use as a guide for your art.").appendTo(explanation);
+            $("<span>").addClass("warp-title").text("模板").appendTo(explanation);
+            $("<span>").addClass("warp-coordinates").text("在画布上叠加图像以用作您的艺术指南。").appendTo(explanation);
         }
     },
     
@@ -1328,8 +1328,8 @@ var place = {
                 app.saveTemplates();
            };
            reader.onerror = (event) => {
-               console.error("Error trying to read template image.", event);
-               alert("An error occurred while attempting to read your template image.")
+               console.error("尝试读取模板图像时出错。", event);
+               alert("尝试读取您的模板图像时出错。")
            };
            reader.readAsDataURL(this.files[0]);
         }).appendTo($("body")).click();
@@ -1338,7 +1338,7 @@ var place = {
     deleteTemplateClicked: function(elem, event) {
         event.preventDefault();
         event.stopPropagation();
-        if(!window.confirm("Are you sure you want to delete this template?")) return;
+        if(!window.confirm("您确定要删除此模板吗？")) return;
         var index = $(elem).attr("data-template-id");
         if(!index || index < 0) return;
         this.templates.splice(index, 1);
@@ -1361,9 +1361,9 @@ var place = {
         event.stopPropagation();
         var index = $(elem).attr("data-template-id");
         if(!index || index < 0) return;
-        var newOpacity = window.prompt("Enter the new desired opacity for this template (as a percentage):", (this.templates[index].opacity || 0.5) * 100);
+        var newOpacity = window.prompt("输入此模板所需的新不透明度（百分比）：", (this.templates[index].opacity || 0.5) * 100);
         if(!newOpacity) return;
-        if(newOpacity > 100 || newOpacity < 0) return window.alert("You must enter a value between 0 and 100.");
+        if(newOpacity > 100 || newOpacity < 0) return window.alert("您必须输入一个介于 0 和 100 之间的值。");
         this.templates[index].opacity = newOpacity / 100;
         this.layoutTemplates();
         this.saveTemplates();
@@ -1374,7 +1374,7 @@ var place = {
         event.stopPropagation();
         var index = $(elem).attr("data-template-id");
         if(!index || index < 0) return;
-        var newScale = window.prompt("Enter the new desired scale for this template (relative to 1):", this.templates[index].scale || 1);
+        var newScale = window.prompt("为此模板输入新的所需比例（相对于 1）：", this.templates[index].scale || 1);
         if(!newScale) return;
         this.templates[index].scale = newScale;
         this.layoutTemplates();
@@ -1463,7 +1463,7 @@ if(place.isSignedIn()) {
                 this.pagination = data.pagination;
                 this.layoutChangelogs();
                 if(this.changelogs && this.changelogs.length > 0) this.showDialog();
-            }).catch((err) => console.warn("Couldn't load changelogs: " + err));
+            }).catch((err) => console.warn("无法加载变更日志：" + err));
         },
 
         requestChangelogPage: function(id) {
@@ -1483,7 +1483,7 @@ if(place.isSignedIn()) {
 
         layoutChangelogs: function() {
             if(!this.changelogs) return this.contentElement.addClass("needs-margin").text("Loading…");
-            if(this.changelogs.length <= 0) return this.contentElement.addClass("needs-margin").text("There's no changelog to show.");
+            if(this.changelogs.length <= 0) return this.contentElement.addClass("needs-margin").text("没有可显示的更改日志。");
             this.contentElement.html("").removeClass("needs-margin");
             this.changelogs.forEach((changelog) => {
                 var element = $("<div>").addClass("changelog-info").attr("data-changelog-version", changelog.version).appendTo(this.contentElement);

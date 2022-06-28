@@ -3,7 +3,7 @@
     +getViewExtensions("place")
     #loading
         .content
-            img.icon(src="https://assets.dynastic.co/brand/img/icon-256.png", height="75")
+            img.icon(src="/img/favicon-256x256.png", height="75")
             span.text 加载中……
     .canvas-container
         include pixel-data
@@ -55,7 +55,7 @@
                     #palette-content-ctn
                         .overlay#sign-in-reminder
                             span #[a#overlay-sign-in(data-place-trigger="openSignInDialog", href="javascript:void(0)") 登录] 或 #[a#overlay-sign-up(data-place-trigger="openSignUpDialog", href="javascript:void(0)") 注册] 加入绘制！
-                        .overlay#placing-modal Placing…
+                        .overlay#placing-modal 绘制中……
                         .overlay#place-timer: span
                         .overlay#availability-loading-modal
         canvas#place-canvas(height="100%", width="100%")
