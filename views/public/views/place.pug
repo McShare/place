@@ -4,7 +4,7 @@
     #loading
         .content
             img.icon(src="https://assets.dynastic.co/brand/img/icon-256.png", height="75")
-            span.text Loading…
+            span.text 加载中……
     .canvas-container
         include pixel-data
         .button-ctn
@@ -47,14 +47,14 @@
                 .content#palette
                     #menu-content-ctn
                         .menu-section
-                            span.menu-heading Templates
-                            #templates-ctn Loading templates…
+                            span.menu-heading 模板
+                            #templates-ctn 模板加载中……
                         .menu-section
-                            span.menu-heading Warps
-                            #warps-ctn Loading warps…
+                            span.menu-heading 标记
+                            #warps-ctn 标记加载中
                     #palette-content-ctn
                         .overlay#sign-in-reminder
-                            span #[a#overlay-sign-in(data-place-trigger="openSignInDialog", href="javascript:void(0)") Sign in] or #[a#overlay-sign-up(data-place-trigger="openSignUpDialog", href="javascript:void(0)") sign up] to start placing!
+                            span #[a#overlay-sign-in(data-place-trigger="openSignInDialog", href="javascript:void(0)") 登录] 或 #[a#overlay-sign-up(data-place-trigger="openSignUpDialog", href="javascript:void(0)") 注册] 加入绘制！
                         .overlay#placing-modal Placing…
                         .overlay#place-timer: span
                         .overlay#availability-loading-modal

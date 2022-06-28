@@ -8,21 +8,21 @@
         .tab-content.active.chat(data-tab-name="chat")
             .messages#chat-messages
             .text-field
-                input#chat-input-field(type="text", maxlength="249", autocomplete="off", placeholder="Send a message", tabindex="-1")
-                a.send-btn#chat-send-btn(href="javascript:void(0)") Send
+                input#chat-input-field(type="text", maxlength="249", autocomplete="off", placeholder="发送一条消息", tabindex="-1")
+                a.send-btn#chat-send-btn(href="javascript:void(0)") 发送
         .tab-content#leaderboardTab(data-tab-name="leaderboard")
             .coming-soon
-                p Loading…
+                p 加载中……
         if user
             .tab-content#achievementsTab(data-tab-name="achievements")
                 .coming-soon
-                    p Coming Soon
+                    p 即将到来
         .tab-content#activeUsersTab(data-tab-name="active-users")
             .coming-soon
-                p Loading…
+                p 加载中……
     .tabbar
-        .tab.active(data-tab-name="chat", title="Chat"): i.fa.fa-comments
-        .tab(data-tab-name="leaderboard", title="Leaderboard"): i.fa.fa-trophy
+        .tab.active(data-tab-name="chat", title="聊天"): i.fa.fa-comments
+        .tab(data-tab-name="leaderboard", title="排行榜"): i.fa.fa-trophy
         if user
-            .tab(data-tab-name="achievements", title="Achievements"): i.fa.fa-star
-        .tab(data-tab-name="active-users", title="Active Users"): i.fa.fa-users
+            .tab(data-tab-name="achievements", title="成就"): i.fa.fa-star
+        .tab(data-tab-name="active-users", title="活跃用户"): i.fa.fa-users
