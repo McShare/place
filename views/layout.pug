@@ -142,7 +142,7 @@ html(lang="zh")
     #cookies-eu-banner(style="display: none;")
       h4 #{config.siteName} Cookies 信息
       p 您继续使用本服务，即表示您接受谷歌分析使用cookie记录一般性访问统计数据。
-        |  #[a#cookies-eu-more(href="/privacy", style=`display: ${hasPP ? "inline" : "none"}`) Learn more &raquo;]
+        |  #[a#cookies-eu-more(href="/privacy", style=`display: ${hasPP ? "inline" : "none"}`) 查看更多 &raquo;]
       | #[btn#cookies-eu-accept.btn.btn-success 接受] #[btn#cookies-eu-reject.btn.btn-danger 拒绝]
 - if(typeof isAdmin === "undefined") isAdmin = false;
 - if(typeof needsLegit === "undefined") needsLegit = false;
