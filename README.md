@@ -1,17 +1,16 @@
 # Dynastic Place
 
-An open-source [r/place](https://reddit.com/r/place) alternative, made by [Dynastic](https://dynastic.co). Want to chat? Join our [Discord server](https://discord.gg/CgC8FTg).
+一个开源的 [r/place](https://reddit.com/r/place) 替代品，由 [Dynastic](https://dynastic.co) 创作。
 
-## The state of this project
-This project is no longer actively maintained and may not be the best choice for a public service. We welcome contributions and new maintainers, but it can unfortunately no longer be a priority for us. In general, it uses some misguided techniques from formerly-beginner developers and portions may be somewhat hard to maintain due to this (however, any help fixing that are super appreciated).
-
-It's been really cool to see people use this project, whether for their artful creations on [our copy, canvas.place](https://canvas.place), or to run their own special-purpose instances (for example, we heard of some Microsoft interns using it, which was pretty cool) and we're proud of the work everyone put into it.
+## 这个项目的状态
+这个项目已不再积极维护，可能不是公共服务的最佳选择。我们欢迎贡献和新的维护者，但不幸的是，这不再是我们的优先事项。一般来说，它使用了一些来自前初级开发人员的错误技术，因此有些部分可能很难维护（然而，任何修复的帮助都是非常感谢的）。
+看到人们使用这个项目真的很酷，无论是他们在[我们的copy, canvas.place](https://canvas.place)上的艺术创作，还是运行他们自己的特殊用途实例（例如，我们听说一些微软实习生使用它，这是非常酷的），我们为每个人投入的工作感到自豪。
 
 ---
 
-## Getting started
+## 入门指南
 
-These instructions will help you get an instance of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project in a production environment.
+这些说明将帮助您在本地机器上启动并运行项目实例，以用于开发和测试。有关如何在生产环境中部署项目的说明，请参见部署。
 
 ### 依赖
 
