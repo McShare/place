@@ -40,9 +40,9 @@ exports.getAPIUsersTable = (req, res, next) => {
 
 exports.postAPIToggleModerator = (req, res, next) => {
     if(!req.query.id) return res.status(400).json({success: false, error: {message: "No user ID specified.", code: "bad_request"}});
-    if(req.query.id == req.user.id) return res.status(400).json({success: false, error: {message: "You may not change your own moderator status.", code: "cant_modify_self"}});
+    if(req.query.id == req.user.id) return res.status(400).json({success: false, error: {message: "您不得更改自己的版主状态。", code: "cant_modify_self"}});
     User.findById(req.query.id).then((user) => {
-        if(!req.user.canPerformActionsOnUser(user)) return res.status(403).json({success: false, error: {message: "You may not perform actions on this user.", code: "access_denied_perms"}});
+        if(!req.user.canPerformActionsOnUser(user)) return res.status(403).json({success: false, error: {message: "您不得对该用户执行操作。", code: "access_denied_perms"}});
         user.moderator = !user.moderator;
         user.save().then((user) => {
             ActionLogger.log(req.place, user.moderator ? "giveModerator" : "removeModerator", user, req.user);
@@ -59,9 +59,9 @@ exports.postAPIToggleModerator = (req, res, next) => {
 
 exports.postAPIToggleBan = (req, res, next) => {
     if(!req.query.id) return res.status(400).json({success: false, error: {message: "No user ID specified.", code: "bad_request"}});
-    if(req.query.id == req.user.id) return res.status(400).json({success: false, error: {message: "You may not ban yourself.", code: "cant_modify_self"}});
+    if(req.query.id == req.user.id) return res.status(400).json({success: false, error: {message: "你不能禁止自己。", code: "cant_modify_self"}});
     User.findById(req.query.id).then((user) => {
-        if(!req.user.canPerformActionsOnUser(user)) return res.status(403).json({success: false, error: {message: "You may not perform actions on this user.", code: "access_denied_perms"}});
+        if(!req.user.canPerformActionsOnUser(user)) return res.status(403).json({success: false, error: {message: "您不得对该用户执行操作。", code: "access_denied_perms"}});
         var info = null;
         if(!user.banned) {
             // We're trying to ban the user
@@ -85,7 +85,7 @@ exports.postAPIToggleBan = (req, res, next) => {
 exports.postAPIToggleActive = (req, res, next) => {
     if(!req.query.id) return res.status(400).json({success: false, error: {message: "No user ID specified.", code: "bad_request"}});
     User.findById(req.query.id).then((user) => {
-        if(!req.user.canPerformActionsOnUser(user)) return res.status(403).json({success: false, error: {message: "You may not perform actions on this user.", code: "access_denied_perms"}});
+        if(!req.user.canPerformActionsOnUser(user)) return res.status(403).json({success: false, error: {message: "您不得对该用户执行操作。", code: "access_denied_perms"}});
         user.deactivated = !user.deactivated;
         user.save().then((user) => {
             ActionLogger.log(req.place, user.deactivated ? "deactivateOther" : "activateOther", user, req.user);
@@ -128,9 +128,9 @@ exports.postAPIUserNotes = (req, res, next) => {
 };
 
 exports.getAPISimilarUsers = (req, res, next) => {
-    if(!req.params.userID || req.params.userID == "") return res.status(400).json({success: false, error: {message: "No user ID specified.", code: "bad_request"}});
+    if(!req.params.userID || req.params.userID == "") return res.status(400).json({success: false, error: {message: "未指定用户 ID。", code: "bad_request"}});
     User.findById(req.params.userID).then((user) => {
-        if(!req.user.canPerformActionsOnUser(user)) return res.status(403).json({success: false, error: {message: "You may not perform actions on this user.", code: "access_denied_perms"}});
+        if(!req.user.canPerformActionsOnUser(user)) return res.status(403).json({success: false, error: {message: "您不得对该用户执行操作。", code: "access_denied_perms"}});
         user.findSimilarIPUsers().then((users) => {
             var identifiedAccounts = users.map((user) => { return { user: user.toInfo(req.place), reasons: ["ip"] }; });
             function respondIdentifiedAccounts() {
@@ -167,22 +167,22 @@ exports.getAPIActions = (req, res, next) => {
         var promises = actions.map((a) => a.getInfo());
         Promise.all(promises).then((actions) => res.json({ success: true, actions: actions, lastID: lastID, actionTemplates: ActionLogger.getAllActionInfo() })).catch((err) => res.status(500).json({ success: false }))
     }).catch((err) => {
-        req.place.reportError("An error occurred while trying to retrieve actions: " + err);
+        req.place.reportError("尝试检索操作时出错：" + err);
         res.status(500).json({ success: false });
     });
 };
 
 exports.postAPIDisableTOTP = (req, res, next) => {
-    if(!req.query.id) return res.status(400).json({success: false, error: {message: "No user ID specified.", code: "bad_request"}});
+    if(!req.query.id) return res.status(400).json({success: false, error: {message: "未指定用户 ID。", code: "bad_request"}});
     User.findById(req.query.id).then((user) => {
-        if(!req.user.canPerformActionsOnUser(user)) return res.status(403).json({success: false, error: {message: "You may not perform actions on this user.", code: "access_denied_perms"}});
-        if(!user.twoFactorAuthEnabled()) return res.status(400).json({success: false, error: {message: "This user doesn't have two-factor authentication enabled.", code: "totp_not_enabled"}});
+        if(!req.user.canPerformActionsOnUser(user)) return res.status(403).json({success: false, error: {message: "您不得对该用户执行操作。", code: "access_denied_perms"}});
+        if(!user.twoFactorAuthEnabled()) return res.status(400).json({success: false, error: {message: "此用户未启用双重身份验证。", code: "totp_not_enabled"}});
         user.totpSecret = null;
         user.save().then((user) => {
             ActionLogger.log(req.place, "disableTOTP", user, req.user);
             res.json({success: true, user: {hasTOTP: false}});
         }).catch((err) => {
-            req.place.reportError("Error trying to disable two-factor authentication for user: " + err);
+            req.place.reportError("尝试为用户禁用双重身份验证时出错：" + err);
             res.status(500).json({success: false});
         });
     }).catch((err) => {
@@ -192,9 +192,9 @@ exports.postAPIDisableTOTP = (req, res, next) => {
 }
 
 exports.postAPIForcePasswordReset = (req, res, next) => {
-    if(!req.query.id || !req.query.key) return res.status(400).json({success: false, error: {message: "No user ID or password reset key specified.", code: "bad_request"}});
+    if(!req.query.id || !req.query.key) return res.status(400).json({success: false, error: {message: "未指定用户 ID 或密码重置密钥。", code: "bad_request"}});
     User.findById(req.query.id).then((user) => {
-        if(!req.user.canPerformActionsOnUser(user)) return res.status(403).json({success: false, error: {message: "You may not perform actions on this user.", code: "access_denied_perms"}});
+        if(!req.user.canPerformActionsOnUser(user)) return res.status(403).json({success: false, error: {message: "您不得对该用户执行操作。", code: "access_denied_perms"}});
         user.passwordResetKey = req.query.key;
         user.save().then((user) => {
             ActionLogger.log(req.place, "forcePWReset", user, req.user);

@@ -58,13 +58,13 @@ exports.apiBroadcastAlert = (req, res, next) => {
 };
 
 exports.deleteUser = (req, res, next) => {
-    if(!req.params.userID || req.params.userID == "") return res.status(400).json({success: false, error: {message: "No user ID specified.", code: "bad_request"}});
+    if(!req.params.userID || req.params.userID == "") return res.status(400).json({success: false, error: {message: "未指定用户 ID。", code: "bad_request"}});
     User.findById(req.params.userID).then((user) => {
-        if(!req.user.canPerformActionsOnUser(user)) return res.status(403).json({success: false, error: {message: "You may not perform actions on this user.", code: "access_denied_perms"}});
+        if(!req.user.canPerformActionsOnUser(user)) return res.status(403).json({success: false, error: {message: "您不得对该用户执行操作。", code: "access_denied_perms"}});
         
         user.markForDeletion();
         ActionLogger.log(req.place, "delete", req.user, user);
         
         return res.json({success: true});
-    }).catch((err) => res.status(400).json({success: false, error: {message: "No user with that ID exists.", code: "user_doesnt_exist"}}));
+    }).catch((err) => res.status(400).json({success: false, error: {message: "不存在具有该 ID 的用户。", code: "user_doesnt_exist"}}));
 };

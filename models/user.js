@@ -58,8 +58,8 @@ var UserSchema = new Schema({
     },
     tester: {
         type: Boolean,
-        required: false,
-        default: false
+        required: true,
+        default: true
     },
     placeCount: {
         type: Number,
@@ -174,7 +174,7 @@ UserSchema.methods.getInfo = function(app = null, getPixelInfo = true) {
 
 UserSchema.methods.loginError = function() {
     if (this.banned === true) return {
-        message: "You are banned from using this service due to violations of the rules.",
+        message: "由于违反规则，您被禁止使用此服务。",
         code: "banned"
     };
     return null;
@@ -194,7 +194,7 @@ UserSchema.methods.isMarkedForDeletion = function() {
 
 UserSchema.methods.setUserName = function(username, callback, usernameSet) {
     if (!UserSchema.statics.isValidUsername(username)) return callback({
-        message: "That username cannot be used. Usernames must be 3-20 characters in length and may only consist of letters, numbers, underscores, and dashes.",
+        message: "无法使用该用户名。用户名的长度必须为 3-20 个字符，并且只能由字母、数字、下划线和破折号组成。",
         code: "username_taken",
         intCode: 400
     });
@@ -202,7 +202,7 @@ UserSchema.methods.setUserName = function(username, callback, usernameSet) {
     this.usernameSet = true;
     this.save(function(err) {
         if (err) return callback({
-            message: "That username already exists.",
+            message: "该用户名已经存在。",
             code: "username_taken",
             intCode: 400
         });
@@ -233,7 +233,7 @@ UserSchema.statics.getPasswordError = function(password) {
 
 UserSchema.statics.register = function(username, password, app, callback, OAuthID, OAuthName) {
     if (!OAuthID && !this.isValidUsername(username)) return callback(null, {
-        message: "That username cannot be used. Usernames must be 3-20 characters in length and may only consist of letters, numbers, underscores, and dashes.",
+        message: "无法使用该用户名。用户名的长度必须为 3-20 个字符，并且只能由字母、数字、下划线和破折号组成。",
         code: "username_taken",
         intCode: 400
     });
@@ -270,7 +270,7 @@ UserSchema.statics.register = function(username, password, app, callback, OAuthI
         // Save the user
         newUser.save(function(err) {
             if (err) return callback(null, {
-                message: "An account with that username already exists.",
+                message: "具有该用户名的帐户已存在.",
                 code: "username_taken",
                 intCode: 400
             });
@@ -284,7 +284,7 @@ UserSchema.statics.register = function(username, password, app, callback, OAuthI
         this.findByUsername(username, (err, user) => {
             if (!user) continueWithRegistration();
             else callback(null, {
-                message: "An account with that username already exists.",
+                message: "具有该用户名的帐户已存在。",
                 code: "username_taken",
                 intCode: 400
             });
@@ -305,7 +305,7 @@ UserSchema.methods.addPixel = function(colour, x, y, app, callback) {
             user.placeCount++;
             user.save((err) => {
                 if (err) return callback(null, {
-                    message: "An unknown error occurred while trying to place that pixel."
+                    message: "尝试放置该像素时发生未知错误。"
                 });
                 return callback(changed, null);
             });
@@ -476,11 +476,11 @@ UserSchema.methods.getBadges = function(app) {
         var rank = app.leaderboardManager.getUserRank(this.id);
         if(rank) badges.push({ text: `Ranked #${rank.toLocaleString()}`, style: rank <= 5 ? "danger" : "info", isRanking: true, lowPriority: true, isLowRanking: rank > 25 });
     }
-    if(this.banned) badges.push({ text: "Banned", style: "danger", title: "This user has been banned for breaking the rules." });
-    else if(this.isMarkedForDeletion()) badges.push({ text: "Deleted", style: "danger", title: "This user chose to delete their account." });
-    else if(this.deactivated) badges.push({ text: "Deactivated", style: "danger", title: "This user chose to deactivate their account." });
-    if(this.admin) badges.push({ text: "Admin", style: "warning", inlineBefore: true, title: "This user is an administrator." });
-    else if(this.moderator) badges.push({ text: "Moderator", shortText: "Mod", style: "warning", inlineBefore: true, title: "This user is a moderator." });
+    if(this.banned) badges.push({ text: "封禁", style: "danger", title: "该用户因违反规定而被封禁。" });
+    else if(this.isMarkedForDeletion()) badges.push({ text: "删除", style: "danger", title: "此用户选择删除他们的帐户。" });
+    else if(this.deactivated) badges.push({ text: "停用", style: "danger", title: "此用户选择停用他们的帐户。" });
+    if(this.admin) badges.push({ text: "管理员", style: "warning", inlineBefore: true, title: "此用户是管理员。" });
+    else if(this.moderator) badges.push({ text: "版主", shortText: "Mod", style: "warning", inlineBefore: true, title: "该用户是版主。" });
     return badges;
 }
 

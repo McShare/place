@@ -13,9 +13,9 @@ var BetaDialogController = DialogController($("#beta-dialog"));
 BetaDialogController.dialog.find("#signup").click(function() {
     placeAjax.post("/api/beta-signup", null, null).then(data => {
         if (data.success) return BetaDialogController.hide();
-        BetaDialogController.showErrorOnTab("enroll", "An error occured whilst signing you up for the beta program.");
+        BetaDialogController.showErrorOnTab("enroll", "为您注册 Beta 计划时出错。");
     }).catch(e => {
-        BetaDialogController.showErrorOnTab("enroll", "An error occured whilst signing you up for the beta program.");
+        BetaDialogController.showErrorOnTab("enroll", "为您注册 Beta 计划时出错。");
     })
 })
 
@@ -116,7 +116,7 @@ var notificationHandler = {
             });
 
         } catch(e) {
-            console.error("Tried to send notification via old API, but failed: " + e);
+            console.error("尝试通过旧 API 发送通知，但失败：" + e);
         }
     }
 }
@@ -319,7 +319,7 @@ var place = {
     },
 
     getCanvasImage: function() {
-        console.log("Get Canvas Image");
+        console.log("获取画布图像");
         if(this.loadedImage) return;
         var app = this;
         this.adjustLoadingScreen("Loading…");;
@@ -332,15 +332,15 @@ var place = {
             app.loadedImage = true;
             app.lastPixelUpdate = Date.now() / 1000;
         }).catch((err) => {
-            console.error("Error loading board image", err);
+            console.error("加载板图像时出错", err);
             if(typeof err.status !== "undefined" && err.status === 503) {
-                app.adjustLoadingScreen("Waiting for server…");
-                console.log("Server wants us to await its instruction");
+                app.adjustLoadingScreen("等待服务器...");
+                console.log("服务器要我们等待它的指令");
                 setTimeout(function() {
                     app.getCanvasImage()
                 }, 15000);
             } else {
-                app.adjustLoadingScreen("An error occurred. Please wait…");
+                app.adjustLoadingScreen("发生错误。请稍等…");
                 setTimeout(function() {
                     app.getCanvasImage()
                 }, 5000);
@@ -375,7 +375,7 @@ var place = {
 
     neededPixelDate: null,
     requestPixelsAfterDate(date) {
-        console.log("Requesting pixels after date " + date);
+        console.log("在日期之后请求像素 " + date);
         this.socket.emit("fetch_pixels", {ts: date});
     },
 
@@ -474,20 +474,20 @@ var place = {
             this.isOutdated = true;
         });
         this.socket.on("disconnect", () => {
-            console.warn("Socket disconnected from server, remembering to reload pixels on reconnect.")
+            console.warn("Socket与服务器断开连接，记得在重新连接时重新加载像素。")
             this.isOutdated = true
         });
         this.socket.on("connect", () => {
-            console.log("Socket successfully connected");
+            console.log("Socket连接成功");
             if(!this.isOutdated) return;
             if(Date.now() / 1000 - this.lastPixelUpdate > 60) {
                 // 1 minute has passed
-                console.log("We'll need to get the entire board image because the last update was over a minute ago.");
+                console.log("我们需要获取整个画板图像，因为上一次更新是在一分钟前。");
                 this.loadedImage = false;
                 this.getCanvasImage();
                 this.isOutdated = false;
             } else {
-                console.log("The last request was a minute or less ago, we can just get the changed pixels over websocket.")
+                console.log("最后一个请求是在一分钟或更短时间之前，我们可以通过 websocket 获取更改的像素。")
                 this.requestPixelsAfterDate(this.lastPixelUpdate)
             }
         });
@@ -535,7 +535,7 @@ var place = {
     },
 
     adminBroadcastReceived(data) {
-        console.log("Broadcast");
+        console.log("播送");
         this.showAdminBroadcast(data.title, data.message, data.style || "info", data.timeout || 0);
     },
 
@@ -573,7 +573,7 @@ var place = {
                 });
             }
         } else {
-            overlay.text(this.hasTriedToFetchAvailability ? "An error occurred while loading colours. Retrying…" : "Loading…").show();
+            overlay.text(this.hasTriedToFetchAvailability ? "加载颜色时出错。正在重试…" : "Loading…").show();
         }
     },
 
@@ -776,7 +776,7 @@ var place = {
             var app = this;
             var clipboard = new Clipboard(btn);
             $(btn).addClass("clickable").tooltip({
-                title: "Copied to clipboard!",
+                title: "已复制到剪贴板！",
                 trigger: "manual",
             });
             clipboard.on("success", function(e) {
@@ -895,7 +895,7 @@ var place = {
     },
 
     getPixel: function(x, y, callback) {
-        return placeAjax.get(`/api/pos-info`, {x: x, y: y}, "An error occurred while trying to retrieve data about that pixel.").then((data) => {
+        return placeAjax.get(`/api/pos-info`, {x: x, y: y}, "尝试检索有关该像素的数据时出错。").then((data) => {
             callback(null, data);
         }).catch((err) => callback(err));
     },
@@ -940,10 +940,10 @@ var place = {
                 var formattedTime = `${minutes}:${padLeft(seconds.toString(), "0", 2)}`;
                 document.title = `[${formattedTime}] | ${this.originalTitle}`;
                 var shouldShowNotifyButton = !this.notificationHandler.canNotify() && this.notificationHandler.isAbleToRequestPermission();
-                $(this.placeTimer).children("span").html("You may place again in <strong>" + formattedTime + "</strong>." + (shouldShowNotifyButton ? " <a href=\"#\" id=\"notify-me\">Notify me</a>." : ""));
+                $(this.placeTimer).children("span").html("您可以再次绘制于 <strong>" + formattedTime + "</strong>." + (shouldShowNotifyButton ? " <a href=\"#\" id=\"notify-me\">提醒我</a>." : ""));
                 return;
             } else if(this.fullUnlockTime > 5) { // only notify if full countdown exceeds 5 seconds
-                this.notificationHandler.sendNotification(this.getSiteName(), "You may now place!");
+                this.notificationHandler.sendNotification(this.getSiteName(), "现在可以绘制啦~");
             }
         }
         if(this.secondTimer) clearInterval(this.secondTimer);
@@ -1114,7 +1114,7 @@ var place = {
             this.changePlacingModalVisibility(true);
             var hex = this.getCurrentColourHex();
             this.placing = true;
-            placeAjax.post("/api/place", { x: x, y: y, hex: hex }, "An error occurred while trying to place your pixel.", () => {
+            placeAjax.post("/api/place", { x: x, y: y, hex: hex }, "尝试放置像素时出错。", () => {
                 this.changePlacingModalVisibility(false);
                 this.placing = false;
             }).then((data) => {
