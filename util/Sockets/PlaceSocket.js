@@ -37,12 +37,12 @@ exports.PlaceSocket = class PlaceSocket extends EventEmitter {
             }
             const {r, d} = data;
             if (!r || typeof r !== "string") {
-                this.close(...badRequest("Bad request types."));
+                this.close(...badRequest("错误的请求类型。"));
                 return;
             }
             if (r === "identify") {
                 if (this.identified) {
-                    this.close(...badRequest("Already identified."));
+                    this.close(...badRequest("已确定。"));
                     return;
                 }
                 if (typeof d === "object") {

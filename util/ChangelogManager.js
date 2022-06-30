@@ -13,10 +13,10 @@ class ChangelogManager {
 
     _fetchChangelogs() {
         if(this.app.config.enableChangelogs) {
-            this.app.logger.info("Changelogs", `Starting load of changelogs…`);
+            this.app.logger.info("变更日志", `开始加载变更日志……`);
             fs.readdir(changelogsPath, (err, files) => {
                 var changelogs = [];
-                if(err) return this.app.logger.error("Changelogs", "Couldn't load changelogs: " + err);
+                if(err) return this.app.logger.error("变更日志", "无法加载变更日志：" + err);
                 files.filter((name) => name.split(".").pop() == "json").forEach((name) => {
                     var fullPath = path.join(changelogsPath, name);
                     var changelogData = require(fullPath);
@@ -30,7 +30,7 @@ class ChangelogManager {
                     }
                 });
                 this.changelogs = changelogs.sort((a, b) => b.version - a.version);
-                this.app.logger.info("Changelogs", `Successfully loaded ${changelogs.length} changelog${changelogs.length == 1 ? "" : "s"}!`);
+                this.app.logger.info("变更日志", `已成功加载 ${changelogs.length} changelog${changelogs.length == 1 ? "" : "s"}!`);
                 setTimeout(() => this._fetchChangelogs(), 30000);
             });
         } else {

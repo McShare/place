@@ -58,8 +58,8 @@ var UserSchema = new Schema({
     },
     tester: {
         type: Boolean,
-        required: true,
-        default: true
+        required: false,
+        default: false
     },
     placeCount: {
         type: Number,

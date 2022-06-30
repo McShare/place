@@ -5,7 +5,7 @@ const socketTimeoutMinutes = 5;
 const activityThresholdMilliseconds = 30000;
 const connectionCloseWarningSeconds = 10;
 
-const maxSocketLimit = {e: "max_sockets", d: {success: false, error: {message: "You have reached the maximum concurrent socket connections."}}};
+const maxSocketLimit = {e: "max_sockets", d: {success: false, error: {message: "你已达到最大并发套接字连接数。"}}};
 exports.SocketController = class SocketController {
     constructor() {
         /**
