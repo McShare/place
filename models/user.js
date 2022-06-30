@@ -66,7 +66,7 @@ var UserSchema = new Schema({
         required: true,
         validate: {
             validator: Number.isInteger,
-            message: "{VALUE} is not a valid integer"
+            message: "{VALUE} 不是有效整数"
         },
         default: 0
     },
@@ -413,7 +413,7 @@ UserSchema.statics.getPubliclyAvailableUserInfo = function(userID, overrideDataA
         }
         if(!userID) return continueWithUser(null);
         this.findById(userID).then(continueWithUser).catch((err) => {
-            app.logger.capture("Error getting user info: " + err, { user: { _id: userID } });
+            app.logger.capture("获取用户信息时出错：" + err, { user: { _id: userID } });
             returnInfo("delete");
         });
     });
@@ -474,7 +474,7 @@ UserSchema.methods.getBadges = function(app) {
     var badges = [];
     if(app) {
         var rank = app.leaderboardManager.getUserRank(this.id);
-        if(rank) badges.push({ text: `Ranked #${rank.toLocaleString()}`, style: rank <= 5 ? "danger" : "info", isRanking: true, lowPriority: true, isLowRanking: rank > 25 });
+        if(rank) badges.push({ text: `排名 #${rank.toLocaleString()}`, style: rank <= 5 ? "danger" : "info", isRanking: true, lowPriority: true, isLowRanking: rank > 25 });
     }
     if(this.banned) badges.push({ text: "封禁", style: "danger", title: "该用户因违反规定而被封禁。" });
     else if(this.isMarkedForDeletion()) badges.push({ text: "删除", style: "danger", title: "此用户选择删除他们的帐户。" });

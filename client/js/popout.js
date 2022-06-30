@@ -232,7 +232,7 @@ window.mobileAndTabletCheck = function() {
           var input = $("#chat-input-field");
           var btn = $("#chat-send-btn");
           if(input.val().length <= 0) return;
-          btn.text("Sending…").attr("disabled", "disabled");
+          btn.text("发送中……").attr("disabled", "disabled");
           console.log()
           var coords = this.place.getCoordinates();
           var text = input.val();
@@ -268,15 +268,15 @@ window.mobileAndTabletCheck = function() {
           }
           var tab = $("#leaderboardTab");
           tab.find("*").remove();
-          if(!this.leaderboard) return this.showTextOnTab("leaderboard", "Loading…");
+          if(!this.leaderboard) return this.showTextOnTab("leaderboard", "加载中……");
           if(this.leaderboard.length <= 0) return this.showTextOnTab("leaderboard", "无排行榜数据");
-          var topPlace = $(`<div class="top-place"><i class="fa fa-trophy big-icon"></i><span class="info">Leader</span></div>`).appendTo(tab);
+          var topPlace = $(`<div class="top-place"><i class="fa fa-trophy big-icon"></i><span class="info">领跑者</span></div>`).appendTo(tab);
           var userInfo = $("<div>").addClass("leader-info").appendTo(topPlace);
           $("<a>").addClass("name").attr("href", `/@${this.leaderboard[0].username}`).text(this.leaderboard[0].username).appendTo(userInfo);
           $("<span>").addClass("pixel-label").text("绘制像素").appendTo(userInfo);
           var subdetails = $("<div>").addClass("subdetails row-fluid clearfix").appendTo(userInfo);
-          getStatElement("This week", this.leaderboard[0].statistics.placesThisWeek.toLocaleString()).addClass("col-xs-6").appendTo(subdetails);
-          getStatElement("Total", this.leaderboard[0].statistics.totalPlaces.toLocaleString()).addClass("col-xs-6").appendTo(subdetails);
+          getStatElement("本周", this.leaderboard[0].statistics.placesThisWeek.toLocaleString()).addClass("col-xs-6").appendTo(subdetails);
+          getStatElement("总计", this.leaderboard[0].statistics.totalPlaces.toLocaleString()).addClass("col-xs-6").appendTo(subdetails);
           if(this.leaderboard.length > 1) {
               this.leaderboard.forEach((item, index) => {
                   if(index > 0) {
@@ -286,15 +286,15 @@ window.mobileAndTabletCheck = function() {
                       $("<a>").text(item.username).attr("href", `/@${item.username}`).appendTo($("<td>").appendTo(row));
                       var info1 = $("<td>").addClass("stat").appendTo(row);
                       $("<span>").text(item.statistics.placesThisWeek.toLocaleString()).appendTo(info1);
-                      $("<span>").text("This week").addClass("row-label").appendTo(info1);
+                      $("<span>").text("本周").addClass("row-label").appendTo(info1);
                       var info2 = $("<td>").addClass("stat").appendTo(row);
                       $("<span>").text(item.statistics.totalPlaces.toLocaleString()).appendTo(info2);
-                      $("<span>").text("Total").addClass("row-label").appendTo(info2);
+                      $("<span>").text("总计").addClass("row-label").appendTo(info2);
                   }
               });
           }
-          if(this.leaderboardUpdated) $("<small>").addClass("last-update").text(`Last updated at ${this.leaderboardUpdated.toLocaleString()}.`).appendTo(tab);
-          $("<p>").addClass("text-muted").text("积分排行榜是根据你在过去一周内放置的像素数(其他人没有覆盖的像素)来计算的。要想在排行榜上占有一席之地，就开始涂鸦吧！").appendTo(tab);
+          if(this.leaderboardUpdated) $("<small>").addClass("last-update").text(`最后更新于 at ${this.leaderboardUpdated.toLocaleString()}.`).appendTo(tab);
+          $("<p>").addClass("text-muted").text("积分排行榜是根据你在过去一周内放置的像素数（其他人没有覆盖的像素）来计算的。要想在排行榜上占有一席之地，就开始涂鸦吧！").appendTo(tab);
       },
   
       loadActiveUsers: function() {
@@ -303,13 +303,13 @@ window.mobileAndTabletCheck = function() {
               app.activeUsers = response.active;
               app.layoutActiveUsers();
           }).catch((err) => {
-              console.error("Failed to load active user data.", err);
-              app.showTextOnTab("active-users", "Failed to load");
+              console.error("无法加载活动用户数据。", err);
+              app.showTextOnTab("active-users", "加载失败");
           });
       },
   
       layoutActiveUsers: function() {
-          if(this.activeUsers.length <= 0) return this.showTextOnTab("active-users", "No Active Users");
+          if(this.activeUsers.length <= 0) return this.showTextOnTab("active-users", "没有活动用户");
           var tab = $("#activeUsersTab");
           tab.find("*").remove();
           var usersCtn = $(`<div>`).appendTo(tab);
@@ -320,11 +320,11 @@ window.mobileAndTabletCheck = function() {
                   var badgeCtn = $("<div>").addClass("rank-container").appendTo(row);
                   item.badges.filter((badge) => !badge.isLowRanking).forEach((badge) => renderBadge(badge, false).appendTo(badgeCtn));
               }
-              var lastSeen = $("<span>").text("Last seen ").addClass("last-seen").appendTo(row);
+              var lastSeen = $("<span>").text("最后活动于 ").addClass("last-seen").appendTo(row);
               var date = item.statistics.lastSeenActively;
               $("<time>").attr("datetime", date).attr("title", new Date(date).toLocaleString()).text($.timeago(date)).appendTo($("<strong>").appendTo(lastSeen));
           });
-          $("<p>").addClass("text-muted").text("加载活动用户数据失败。同时登录并在过去五分钟内放置了像素或发送了聊天消息的用户将出现在这里。此选项卡每分钟更新一次，因此数据可能会出现延迟。").appendTo(tab);
+          $("<p>").addClass("text-muted").text("在过去五分钟内涂鸦或聊天过的用户将显示在此处。此选项卡每分钟更新一次，因此数据可能会出现延迟。").appendTo(tab);
       },
   
       isInPopOutWindow: function() {

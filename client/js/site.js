@@ -82,7 +82,7 @@ function DialogController(dialog) {
                 if(form.data("submitting")) return;
                 var submitButton = form.find("input[type=submit], button[type=submit]");
                 var origSubmitButtonText = submitButton.text();
-                submitButton.text("Loading").attr("disabled", "disabled");
+                submitButton.text("加载中").attr("disabled", "disabled");
                 form.data("submitting", true);
                 placeAjax.post("/api" + call, data, null, () => {
                     submitButton.removeAttr("disabled");
