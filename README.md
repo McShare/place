@@ -47,7 +47,7 @@ Please only host your own copy if you are willing to abide by the clearly define
 
 #### Other notes
 
-It's recommended that you use a reverse proxy rather than running Place direcly on port 80. For this, we recommend Nginx. Below is our nginx configuration:
+建议您使用反向代理而不是直接在端口 80 上运行 Place。为此，我们推荐使用 Nginx。下面是我们的nginx配置：
 
 ```nginx
 server {
@@ -91,28 +91,28 @@ db.users.updateOne(
 
 ## Contributing 
 
-Please make a [pull request](/https://github.com/dynastic/place/pulls). Before making a pull request, come and chat with us on [Discord](https://discord.gg/CgC8FTg) in #contributors.
+请提出 [拉取请求](/https://github.com/dynastic/place/pulls)。在提出拉取请求之前，请在 [Discord](https://discord.gg/CgC8FTg) 上与我们聊天 #contributors.
 
-Ensure that all code lints successfully - we have CI that requires this.
+确保所有代码 lints 成功 -我们有需要这个的 CI。
 
-### Roadmap
+### 路线图
 
-Check our currently open issues for an idea on what to work on!
+查看我们当前未解决的问题，了解如何处理！
 
-## Authors
+## 作者
 
-* [Ayden Panhuyzen](https://ayden.dev) - Core Developer
-* [Jamie Bishop](https://twitter.com/jamiebishop123) - Core Developer
-* [Eric Rabil](https://twitter.com/ericrabil) - Core Developer
+* [Ayden Panhuyzen](https://ayden.dev) - 核心开发者
+* [Jamie Bishop](https://twitter.com/jamiebishop123) - 核心开发者
+* [Eric Rabil](https://twitter.com/ericrabil) - 核心开发者
 
-Also see the list of [contributors](https://www.github.com/dynastic/place/contributors) who generously donated their time and skills to this project to to make it what it is.
+另请参阅 [贡献者](https://www.github.com/dynastic/place/contributors) 的列表，他们慷慨地将时间和技能捐赠给该项目以使其成为现实。
 
 ## License
 
-Dynastic Place is licensed under a [modified version of the APGL-3.0 license](https://github.com/dynastic/place/blob/master/LICENSE). Please see it for details.
+Dynastic Place 根据 [APGL-3.0 许可的修改版本](https://github.com/dynastic/place/blob/master/LICENSE) 获得许可。详情请参阅。
 
-## Acknowledgments
+## 致谢
 
-Thank you to:
-* Reddit, for the [original Place](https://reddit.com/r/place).
-* Our community for making it worthwhile.
+谢谢：
+*Reddit，用于 [原始place](https://reddit.com/r/place)。
+*我们的社区使它值得。
