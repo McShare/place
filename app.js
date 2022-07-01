@@ -31,7 +31,7 @@ app.loadConfig = (path = "./config/config") => {
     if(!app.config.enableChangelogs) app.config.enableChangelogs = true;
     if(!app.config.boardSize) app.config.boardSize = 1600; // default to 1600 if not specified in config
     if(oldConfig && (oldConfig.secret != app.config.secret || oldConfig.database != app.config.database || oldConfig.boardSize != app.config.boardSize)) {
-        app.logger.log("Configuration", "We are stopping the Place server because the database URL, secret, and/or board image size has been changed, which will require restarting the entire server.");
+        app.logger.log("配置", "我们正在停止 Place 服务器，因为数据库 URL、密码和/或板图像大小已更改，这将需要重新启动整个服务器。");
         process.exit(0);
     }
     if(oldConfig && (oldConfig.oauth != app.config.oauth)) {
@@ -61,12 +61,12 @@ if (!fs.existsSync(app.dataFolder)) fs.mkdirSync(app.dataFolder);
 
 // Get image handler
 app.paintingManager = PaintingManager(app);
-app.logger.info('Startup', "Loading image from the database…");
+app.logger.info('启动', "从数据库加载图像中…");
 app.paintingManager.loadImageFromDatabase().then((image) => {
     app.paintingManager.startTimer();
-    app.logger.info('Startup', "Successfully loaded image from database.");
+    app.logger.info('启动', "从数据库成功加载图像。");
 }).catch((err) => {
-    app.logger.capture("Error while loading the image from database: " + err);
+    app.logger.capture("从数据库加载图像时出错：" + err);
 });
 
 app.leaderboardManager = LeaderboardManager(app);
@@ -108,7 +108,7 @@ const handlePendingDeletions = () => {
         const now = new Date();
         User.remove({ deletionDate: { $lte: now } }, function(err, result) {
             if (err) { console.error(err); return }
-            if (result.n) app.logger.log('Deleter', `Deleted ${result.n} users.`);
+            if (result.n) app.logger.log('删除者', `已删除 ${result.n} 用户。`);
         });
     }, 30 * Math.pow(10, 3));
 }
@@ -123,7 +123,7 @@ app.javascriptProcessor.processJavaScript();
 
 app.stopServer = () => {
     if(app.server.listening) {
-        app.logger.log('Shutdown', "Closing server…")
+        app.logger.log('关闭', "正在关闭服务器…")
         app.server.close();
         setImmediate(function() { app.server.emit("close"); });
     }
@@ -132,7 +132,7 @@ app.stopServer = () => {
 app.restartServer = () => {
     app.stopServer();
     app.server.listen(process.env.PORT || app.config.port, (process.env.ONLY_LISTEN_LOCAL ? process.env.ONLY_LISTEN_LOCAL === true : app.config.onlyListenLocal) ? "127.0.0.1" : null, null, () => {
-        app.logger.log('Startup', `Started Place server on port ${app.config.port}${app.config.onlyListenLocal ? " (only listening locally)" : ""}.`);
+        app.logger.log('启动', `已启动Place服务器于端口 ${app.config.port}${app.config.onlyListenLocal ? " （仅在本地监听）" : ""}.`);
     });
 }
 app.restartServer();
@@ -153,10 +153,10 @@ readline.on('line', i => {
         var output = eval(i)
         output instanceof Promise
         ? output.then(a => {
-            console.log('Promise Resolved')
+            console.log('承诺已解决')
             console.log(util.inspect(a, {depth: 0}))
         }).catch(e => {
-            console.log('Promise Rejected')
+            console.log('承诺被拒绝')
             console.log(e.stack)
         })
         : output instanceof Object

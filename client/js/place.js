@@ -322,7 +322,7 @@ var place = {
         console.log("获取画布图像");
         if(this.loadedImage) return;
         var app = this;
-        this.adjustLoadingScreen("Loading…");;
+        this.adjustLoadingScreen("加载中……");;
         this.loadImage().then((image) => {
             app.adjustLoadingScreen();
             app.canvasController.clearCanvas();
@@ -470,7 +470,7 @@ var place = {
     initializeSocketConnection() {
         this.socket = io();
         this.socket.on("error", (e) => {
-            console.error("Socket error (will reload pixels on reconnect to socket): " + e);
+            console.error("Socket错误（将在重新连接到Socket时重新加载像素）：" + e);
             this.isOutdated = true;
         });
         this.socket.on("disconnect", () => {
@@ -523,13 +523,13 @@ var place = {
     },
 
     liveUpdateTiles(data) {
-        console.log("Live Tiles Update");
+        console.log("动态磁贴更新");
         if(!data.pixels) return;
         data.pixels.forEach((pixel) => this.liveUpdateTile(pixel));
     },
 
     liveUpdateTile(data) {
-        console.log("Live Tile Update");
+        console.log("动态磁贴更新");
         this.lastPixelUpdate = Date.now() / 1000;
         this.setPixel(`#${data.colour}`, data.x, data.y);
     },
@@ -573,7 +573,7 @@ var place = {
                 });
             }
         } else {
-            overlay.text(this.hasTriedToFetchAvailability ? "加载颜色时出错。正在重试…" : "Loading…").show();
+            overlay.text(this.hasTriedToFetchAvailability ? "加载颜色时出错。正在重试…" : "加载中……").show();
         }
     },
 
