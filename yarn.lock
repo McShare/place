@@ -6885,9 +6885,9 @@ dynastic-provider@dynastic/accounts-provider.git:
   languageName: node
   linkType: hard
 
-"marked@npm:^0.3.6":
-  version: 0.3.19
-  resolution: "marked@npm:0.3.19"
+"marked@npm:^4.0.10":
+  version: 4.0.10
+  resolution: "marked@npm:4.0.10"
   bin:
     marked: ./bin/marked
   checksum: 8567a1b82538e714959bbdb66408cfc805c258b94d87f0a0e76e8ca1d2c8fbc22f11f15dcc14b20b4be6e21e9b206c9085563d71c3941ea8dc61cec529d941bc
@@ -8586,7 +8586,7 @@ dynastic-provider@dynastic/accounts-provider.git:
     helmet: ^3.8.1
     jimp: ^0.5.4
     jwt-simple: ^0.5.1
-    marked: ^0.3.6
+    marked: ^4.0.10
     md5: ^2.2.1
     mongodb-core: ^3.2.7
     mongoose: ^6.2.10
