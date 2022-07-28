@@ -1269,9 +1269,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios@npm:^0.18.0":
-  version: 0.18.1
-  resolution: "axios@npm:0.18.1"
+"axios@npm:^0.21.2":
+  version: 0.21.2
+  resolution: "axios@npm:0.21.2"
   dependencies:
     follow-redirects: 1.5.10
     is-buffer: ^2.0.2
@@ -3587,7 +3587,7 @@ dynastic-provider@dynastic/accounts-provider.git:
   version: 1.0.20-2
   resolution: "dynastic-provider@https://github.com/dynastic/accounts-provider.git#commit=7319a1d0aec4e41f5ccc8dfd258d5133af016f65"
   dependencies:
-    axios: ^0.18.0
+    axios: ^0.21.2
     passport-oauth2: ^1.4.0
   checksum: 42cc0d046046ac93fed1e19816248b5514d6525535b5ac61ee2d4784ffae80c41fc43aac150eae45c03380adea8a8be21b5d6c6ca7a057dc5a781a5395315475
   languageName: node
