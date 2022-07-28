@@ -2340,13 +2340,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bson@npm:^1.1.1":
-  version: 1.1.3
-  resolution: "bson@npm:1.1.3"
-  checksum: 86e3ade797f3169a007ca42501f033444cac20e030d932ab274fd0e33ec9730be463198eba92b7e66a0babe15bb7d221d52a8b1127b211230bb5032ade3aef53
-  languageName: node
-  linkType: hard
-
 "bson@npm:^1.1.4":
   version: 1.1.6
   resolution: "bson@npm:1.1.6"
