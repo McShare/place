@@ -2141,9 +2141,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"braces@npm:^1.8.2":
-  version: 1.8.5
-  resolution: "braces@npm:1.8.5"
+"braces@npm:^2.3.1":
+  version: 2.3.1
+  resolution: "braces@npm:2.3.1"
   dependencies:
     expand-range: ^1.8.1
     preserve: ^0.2.0
@@ -6992,7 +6992,7 @@ dynastic-provider@dynastic/accounts-provider.git:
   dependencies:
     arr-diff: ^2.0.0
     array-unique: ^0.2.1
-    braces: ^1.8.2
+    braces: ^2.3.1
     expand-brackets: ^0.1.4
     extglob: ^0.3.1
     filename-regex: ^2.0.0
