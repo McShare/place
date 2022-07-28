@@ -2266,7 +2266,7 @@ __metadata:
     browserify-rsa: ^4.0.0
     create-hash: ^1.1.0
     create-hmac: ^1.1.2
-    elliptic: ^6.0.0
+    elliptic: ^6.5.4
     inherits: ^2.0.1
     parse-asn1: ^5.0.0
   checksum: b1e6f6383f6abbbd5e0f4eb0161cd211cb79af636dd14b5f038db7f3a309b3e026e7e8d7428e3f072a9baace57051a2f45cff311f3b26a901e8be921c3dab847
@@ -3047,7 +3047,7 @@ __metadata:
   resolution: "create-ecdh@npm:4.0.3"
   dependencies:
     bn.js: ^4.1.0
-    elliptic: ^6.0.0
+    elliptic: ^6.5.4
   checksum: 0678955daf937c188c69b2a601ebcbe4ab02ca3c1aa04f62d5fb5511430d0141802207eabf9aa100351920ea89bfcbe53ba8bd4c013a1a3453fd807549a5ede2
   languageName: node
   linkType: hard
@@ -3629,9 +3629,9 @@ dynastic-provider@dynastic/accounts-provider.git:
   languageName: node
   linkType: hard
 
-"elliptic@npm:^6.0.0":
-  version: 6.4.1
-  resolution: "elliptic@npm:6.4.1"
+"elliptic@npm:^6.5.4":
+  version: 6.5.4
+  resolution: "elliptic@npm:6.5.4"
   dependencies:
     bn.js: ^4.4.0
     brorand: ^1.0.1
