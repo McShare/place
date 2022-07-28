@@ -141,7 +141,7 @@ __metadata:
   dependencies:
     "@jimp/utils": ^0.5.0
     core-js: ^2.5.7
-    jpeg-js: ^0.3.4
+    jpeg-js: ^0.4.4
   peerDependencies:
     "@jimp/custom": ">=0.3.5"
   checksum: dd84b001a25afe4e38df31e09992536a1e800090c637f11b9fdb353cd9cc704ee0498444ee71f4b02dcc60f64822bd6cf38c13fd37af2ed20f540a893afc24ed
@@ -4124,7 +4124,7 @@ dynastic-provider@dynastic/accounts-provider.git:
   resolution: "express-brute-mongoose@npm:1.1.0"
   dependencies:
     express-brute: ^1.0.1
-    moment: ^2.18.1
+    moment: ^2.29.4
   checksum: 186886747d95d337d06d956b013f13a7faf8b2d6747bd3015e9925f9c8023986e99eb0ee63e2ffd7c3a538f3b21c8e3c9ed5dfcf6612d55784675f105f8162c4
   languageName: node
   linkType: hard
@@ -6342,15 +6342,15 @@ dynastic-provider@dynastic/accounts-provider.git:
   dependencies:
     hoek: 2.x.x
     isemail: 1.x.x
-    moment: 2.x.x
+    moment: 2.29.4
     topo: 1.x.x
   checksum: 39b1e9a7e381b80d0fcaf230c46c096632620ae5e27e681dc10c57ca3b71b7c502eaecb0f2ed837cefd6aeca6de03ee3edb3295e0f2ff19e493d568be0143bd3
   languageName: node
   linkType: hard
 
-"jpeg-js@npm:^0.3.4":
-  version: 0.3.4
-  resolution: "jpeg-js@npm:0.3.4"
+"jpeg-js@npm:^0.4.4":
+  version: 0.4.4
+  resolution: "jpeg-js@npm:0.4.4"
   checksum: e9d9633146fd1cd6e54d5c8c7055bf8ee2a73f84cff73a6e97f0ebfae7400c12a544c9fdbb309b5d87b7cf3bf96840946cce38d8fbfcce9d73709687d3aa8bca
   languageName: node
   linkType: hard
@@ -7322,9 +7322,9 @@ dynastic-provider@dynastic/accounts-provider.git:
   languageName: node
   linkType: hard
 
-"moment@npm:2.x.x, moment@npm:^2.18.1":
-  version: 2.22.2
-  resolution: "moment@npm:2.22.2"
+"moment@npm:2.29.4, moment@npm:^2.29.4":
+  version: 2.29.4
+  resolution: "moment@npm:2.29.4"
   checksum: b6c48277845263d3ba1c86b4599253c92bb4286771bd55c53aaec7eb4ede596f76a522239d8f3c67147f371cdf5311039d2ff835f1c149ce64676c6207741fe7
   languageName: node
   linkType: hard
