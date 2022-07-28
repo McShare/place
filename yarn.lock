@@ -7141,16 +7141,16 @@ dynastic-provider@dynastic/accounts-provider.git:
   languageName: node
   linkType: hard
 
-"minimist@npm:0.0.8":
-  version: 0.0.8
-  resolution: "minimist@npm:0.0.8"
+"minimist@npm:1.2.6":
+  version: 1.2.6
+  resolution: "minimist@npm:1.2.6"
   checksum: 042f8b626b1fa44dffc23bac55771425ac4ee9d267b56f9064c07713e516e1799f3ba933bb628d2475a210caf7dcdb98161611baa1f0daf49309a944cb4bc48f
   languageName: node
   linkType: hard
 
-"minimist@npm:^1.1.0, minimist@npm:^1.2.0":
-  version: 1.2.0
-  resolution: "minimist@npm:1.2.0"
+"minimist@npm:^1.2.6, minimist@npm:^1.2.6":
+  version: 1.2.6
+  resolution: "minimist@npm:1.2.6"
   checksum: 72473f0fce6692cf1e134dfdccfcfddd64d354d465dac3e43053e0c6d398eb9684c9d964f666e3c1be93829de47cb1ddf3cd26d4071322ed25fbaa625441dd85
   languageName: node
   linkType: hard
@@ -7281,7 +7281,7 @@ dynastic-provider@dynastic/accounts-provider.git:
   version: 0.5.1
   resolution: "mkdirp@npm:0.5.1"
   dependencies:
-    minimist: 0.0.8
+    minimist: 1.2.6
   bin:
     mkdirp: bin/cmd.js
   checksum: ed1ab49bb1d06c88dba7cfe930a3186f2605b5465aab7c8f24119baaba6e38f9ab4ac1695c68f476c65a48df2a69a8495049cd6e26c360ea082151a0771343d2
@@ -9092,7 +9092,7 @@ dynastic-provider@dynastic/accounts-provider.git:
   dependencies:
     deep-extend: ^0.6.0
     ini: ~1.3.0
-    minimist: ^1.2.0
+    minimist: ^1.2.6
     strip-json-comments: ~2.0.1
   bin:
     rc: ./cli.js
@@ -10415,7 +10415,7 @@ dynastic-provider@dynastic/accounts-provider.git:
   version: 1.0.0
   resolution: "subarg@npm:1.0.0"
   dependencies:
-    minimist: ^1.1.0
+    minimist: ^1.2.6
   checksum: 8359df72e9a2d03c35702ba58e49cac04daae8f27dff26837e12687c7d10cb800a036fd33fdc5eb0e8c24fb25d804f657fe8bde18dd3dd6ec7dab8eff7aac27e
   languageName: node
   linkType: hard
