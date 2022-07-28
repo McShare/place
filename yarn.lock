@@ -8329,9 +8329,9 @@ dynastic-provider@dynastic/accounts-provider.git:
   languageName: node
   linkType: hard
 
-"passport@npm:^0.3.2":
-  version: 0.3.2
-  resolution: "passport@npm:0.3.2"
+"passport@npm:^0.6.0":
+  version: 0.6.0
+  resolution: "passport@npm:0.6.0"
   dependencies:
     passport-strategy: 1.x.x
     pause: 0.0.1
@@ -8575,7 +8575,7 @@ dynastic-provider@dynastic/accounts-provider.git:
     mongoose-model-stream: ^3.1.0
     morgan: ^1.8.1
     mquery: ^4.0.2
-    passport: ^0.3.2
+    passport: ^0.6.0
     passport-discord: ^0.1.2
     passport-facebook: ^2.1.1
     passport-github: ^1.1.0
