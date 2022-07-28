@@ -1292,7 +1292,7 @@ __metadata:
     convert-source-map: ^1.5.0
     fs-readdir-recursive: ^1.0.0
     glob: ^7.1.2
-    lodash: ^4.17.20
+    lodash: ^4.17.21
     output-file-sync: ^1.1.2
     path-is-absolute: ^1.0.1
     slash: ^1.0.0
@@ -1338,7 +1338,7 @@ __metadata:
     convert-source-map: ^1.5.1
     debug: ^2.6.9
     json5: ^0.5.1
-    lodash: ^4.17.20
+    lodash: ^4.17.21
     minimatch: ^3.0.4
     path-is-absolute: ^1.0.1
     private: ^0.1.8
@@ -1357,7 +1357,7 @@ __metadata:
     babel-types: ^6.26.0
     detect-indent: ^4.0.0
     jsesc: ^1.3.0
-    lodash: ^4.17.20
+    lodash: ^4.17.21
     source-map: ^0.5.7
     trim-right: ^1.0.1
   checksum: 5397f4d4d1243e7157e3336be96c10fcb1f29f73bf2d9842229c71764d9a6431397d249483a38c4d8b1581459e67be4df6f32d26b1666f02d0f5bfc2c2f25193
@@ -1394,7 +1394,7 @@ __metadata:
     babel-helper-function-name: ^6.24.1
     babel-runtime: ^6.26.0
     babel-types: ^6.26.0
-    lodash: ^4.17.20
+    lodash: ^4.17.21
   checksum: 08e201eb009a7dbd020232fb7468ac772ebb8cfd33ec9a41113a54f4c90fd1e3474497783d635b8f87d797706323ca0c1758c516a630b0c95277112fc2fe4f13
   languageName: node
   linkType: hard
@@ -1459,7 +1459,7 @@ __metadata:
   dependencies:
     babel-runtime: ^6.26.0
     babel-types: ^6.26.0
-    lodash: ^4.17.20
+    lodash: ^4.17.21
   checksum: ab949a4c90ab255abaafd9ec11a4a6dc77dba360875af2bb0822b699c058858773792c1e969c425c396837f61009f30c9ee5ba4b9a8ca87b0779ae1622f89fb3
   languageName: node
   linkType: hard
@@ -1577,7 +1577,7 @@ __metadata:
     babel-template: ^6.26.0
     babel-traverse: ^6.26.0
     babel-types: ^6.26.0
-    lodash: ^4.17.20
+    lodash: ^4.17.21
   checksum: 5e4dee33bf4aab0ce7751a9ae845c25d3bf03944ffdfc8d784e1de2123a3eec19657dd59274c9969461757f5e2ab75c517e978bafe5309a821a41e278ad38a63
   languageName: node
   linkType: hard
@@ -1885,7 +1885,7 @@ __metadata:
     babel-runtime: ^6.26.0
     core-js: ^2.5.0
     home-or-tmp: ^2.0.0
-    lodash: ^4.17.20
+    lodash: ^4.17.21
     mkdirp: ^0.5.1
     source-map-support: ^0.4.15
   checksum: 75d5fe060e4850dbdbd5f56db2928cd0b6b6c93a65ba5f2a991465af4dc3f4adf46d575138f228b2169b1e25e3b4a7cdd16515a355fea41b873321bf56467583
@@ -1910,7 +1910,7 @@ __metadata:
     babel-traverse: ^6.26.0
     babel-types: ^6.26.0
     babylon: ^6.18.0
-    lodash: ^4.17.20
+    lodash: ^4.17.21
   checksum: 028dd57380f09b5641b74874a19073c53c4fb3f1696e849575aae18f8c80eaf21db75209057db862f3b893ce2cd9b795d539efa591b58f4a0fb011df0a56fbed
   languageName: node
   linkType: hard
@@ -1927,7 +1927,7 @@ __metadata:
     debug: ^2.6.8
     globals: ^9.18.0
     invariant: ^2.2.2
-    lodash: ^4.17.20
+    lodash: ^4.17.21
   checksum: fca037588d2791ae0409f1b7aa56075b798699cccc53ea04d82dd1c0f97b9e7ab17065f7dd3ecd69101d7874c9c8fd5e0f88fa53abbae1fe94e37e6b81ebcb8d
   languageName: node
   linkType: hard
@@ -1938,7 +1938,7 @@ __metadata:
   dependencies:
     babel-runtime: ^6.26.0
     esutils: ^2.0.2
-    lodash: ^4.17.20
+    lodash: ^4.17.21
     to-fast-properties: ^1.0.3
   checksum: d16b0fa86e9b0e4c2623be81d0a35679faff24dd2e43cde4ca58baf49f3e39415a011a889e6c2259ff09e1228e4c3a3db6449a62de59e80152fe1ce7398fde76
   languageName: node
@@ -5169,7 +5169,7 @@ dynastic-provider@dynastic/accounts-provider.git:
   dependencies:
     gulplog: ^1.0.0
     has-gulplog: ^0.1.0
-    lodash: ^4.17.20
+    lodash: ^4.17.21
     make-error-cause: ^1.1.1
     through2: ^2.0.0
     uglify-js: ~2.8.10
@@ -6745,9 +6745,9 @@ dynastic-provider@dynastic/accounts-provider.git:
   languageName: node
   linkType: hard
 
-"lodash@npm:^4.17.20, lodash@npm:^4.17.20":
-  version: 4.17.20
-  resolution: "lodash@npm:4.17.20"
+"lodash@npm:^4.17.21, lodash@npm:^4.17.21":
+  version: 4.17.21
+  resolution: "lodash@npm:4.17.21"
   checksum: 0611590f43371f1dc93f8ad6d73feab7e301417ff7bbd4f7af4421def41d7b3210230539ae952884a0c7b944ba3266dd2723c02b79f36a7906e8d9e2e280a498
   languageName: node
   linkType: hard
