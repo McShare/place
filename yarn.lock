@@ -4134,7 +4134,7 @@ dynastic-provider@dynastic/accounts-provider.git:
   resolution: "express-brute@npm:1.0.1"
   dependencies:
     long-timeout: ~0.1.1
-    underscore: ~1.8.3
+    underscore: ~1.12.1
   peerDependencies:
     express: 4.x
   checksum: c47bc1af536b5450e0fb4030186bfeb044605f8304caa8e2345634e5b8337217981aaab3cd2f7f88538af6a7dfb3934b7a6c3cfdb3e325e37b25ab87f841655a
@@ -10901,9 +10901,9 @@ dynastic-provider@dynastic/accounts-provider.git:
   languageName: node
   linkType: hard
 
-"underscore@npm:~1.8.3":
-  version: 1.8.3
-  resolution: "underscore@npm:1.8.3"
+"underscore@npm:~1.12.1":
+  version: 1.12.1
+  resolution: "underscore@npm:1.12.1"
   checksum: 46d9ea25c8b9f6f21080438f5abc1c8be3063efca5154670bf7ef6e61587660113581b258aea07ccab4045b9ab6e9293ef89103210a3491b64ef03c2d8051a36
   languageName: node
   linkType: hard
