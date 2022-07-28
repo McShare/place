@@ -11435,9 +11435,9 @@ dynastic-provider@dynastic/accounts-provider.git:
   languageName: node
   linkType: hard
 
-"xmldom@npm:0.1.x":
-  version: 0.1.27
-  resolution: "xmldom@npm:0.1.27"
+"xmldom@npm:0.7.0":
+  version: 0.7.0
+  resolution: "xmldom@npm:0.7.0"
   checksum: a61ad9bd04c87f6df1dc69e88c0f14e3a761d85a9e3f5047b89c2db2b84491ebe25e1ac9a69e4bfc2a9d142b78614a476cc256932606b8a4bb91f342d43f034a
   languageName: node
   linkType: hard
@@ -11460,7 +11460,7 @@ dynastic-provider@dynastic/accounts-provider.git:
   version: 0.1.0
   resolution: "xtraverse@npm:0.1.0"
   dependencies:
-    xmldom: 0.1.x
+    xmldom: 0.7.0
   checksum: 50da955606472168d4aecfde9d47280814defa8686ccf8452c2c31d3fcd841c2f75c753ad2fc7c64bf9968fc23bcb902ab500e70158d8b006d924d15a66f7028
   languageName: node
   linkType: hard
