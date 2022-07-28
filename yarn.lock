@@ -5736,7 +5736,7 @@ dynastic-provider@dynastic/accounts-provider.git:
   version: 1.0.0
   resolution: "is-accessor-descriptor@npm:1.0.0"
   dependencies:
-    kind-of: ^6.0.0
+    kind-of: ^6.0.3
   checksum: 8e475968e9b22f9849343c25854fa24492dbe8ba0dea1a818978f9f1b887339190b022c9300d08c47fe36f1b913d70ce8cbaca00369c55a56705fdb7caed37fe
   languageName: node
   linkType: hard
@@ -5845,7 +5845,7 @@ dynastic-provider@dynastic/accounts-provider.git:
   version: 1.0.0
   resolution: "is-data-descriptor@npm:1.0.0"
   dependencies:
-    kind-of: ^6.0.0
+    kind-of: ^6.0.3
   checksum: e705e6816241c013b05a65dc452244ee378d1c3e3842bd140beabe6e12c0d700ef23c91803f971aa7b091fb0573c5da8963af34a2b573337d87bc3e1f53a4e6d
   languageName: node
   linkType: hard
@@ -5876,7 +5876,7 @@ dynastic-provider@dynastic/accounts-provider.git:
   dependencies:
     is-accessor-descriptor: ^1.0.0
     is-data-descriptor: ^1.0.0
-    kind-of: ^6.0.2
+    kind-of: ^6.0.3
   checksum: 2ed623560bee035fb67b23e32ce885700bef8abe3fbf8c909907d86507b91a2c89a9d3a4d835a4d7334dd5db0237a0aeae9ca109c1e4ef1c0e7b577c0846ab5a
   languageName: node
   linkType: hard
@@ -6581,9 +6581,9 @@ dynastic-provider@dynastic/accounts-provider.git:
   languageName: node
   linkType: hard
 
-"kind-of@npm:^6.0.0, kind-of@npm:^6.0.2":
-  version: 6.0.2
-  resolution: "kind-of@npm:6.0.2"
+"kind-of@npm:^6.0.0, kind-of@npm:^6.0.3":
+  version: 6.0.3
+  resolution: "kind-of@npm:6.0.3"
   checksum: a2978b5694d4162d41f2d0f56bb5f587971fd0908331142e1a666fa5abd92cad535d99bf2058bd0b6dc1d07706e4f86818a09afcee98a74b36045ac62d462baf
   languageName: node
   linkType: hard
@@ -6838,7 +6838,7 @@ dynastic-provider@dynastic/accounts-provider.git:
   version: 1.0.1
   resolution: "make-iterator@npm:1.0.1"
   dependencies:
-    kind-of: ^6.0.2
+    kind-of: ^6.0.3
   checksum: d38afc388f4374b15c0622d4fa4d3e8c3154e3a6ba35b01e9a5179c127d7dd09a91fa571056aa9e041981b39f80bdbab035c05475e56ef675a18bdf550f0cb6a
   languageName: node
   linkType: hard
@@ -6992,7 +6992,7 @@ dynastic-provider@dynastic/accounts-provider.git:
     extend-shallow: ^3.0.2
     extglob: ^2.0.4
     fragment-cache: ^0.2.1
-    kind-of: ^6.0.2
+    kind-of: ^6.0.3
     nanomatch: ^1.2.9
     object.pick: ^1.3.0
     regex-not: ^1.0.0
@@ -7538,7 +7538,7 @@ dynastic-provider@dynastic/accounts-provider.git:
     extend-shallow: ^3.0.2
     fragment-cache: ^0.2.1
     is-windows: ^1.0.2
-    kind-of: ^6.0.2
+    kind-of: ^6.0.3
     object.pick: ^1.3.0
     regex-not: ^1.0.0
     snapdragon: ^0.8.1
@@ -9001,7 +9001,7 @@ dynastic-provider@dynastic/accounts-provider.git:
   resolution: "randomatic@npm:3.1.0"
   dependencies:
     is-number: ^4.0.0
-    kind-of: ^6.0.0
+    kind-of: ^6.0.3
     math-random: ^1.0.1
   checksum: 4231cb5320f7c517d207dad6dab00caa4f1ca9c44ddb3202c37c23d37333d607ceaa9aab46cbafb9e6fc79f78d35207c96b686c810ad08e476eaee2d1f6b8038
   languageName: node
