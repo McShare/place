@@ -8144,7 +8144,7 @@ dynastic-provider@dynastic/accounts-provider.git:
   resolution: "parse-headers@npm:2.0.1"
   dependencies:
     for-each: ^0.3.2
-    trim: 0.0.1
+    trim: 0.0.3
   checksum: df52ced4e908bea5e24335fc1728b4603ffabe05dd20eed7e772711e5e90205d9ebb8dc80b415adee7614e84a41663af88d41d11f619bbdefe55de8e25ea4b4e
   languageName: node
   linkType: hard
@@ -8366,13 +8366,6 @@ dynastic-provider@dynastic/accounts-provider.git:
   version: 3.1.1
   resolution: "path-key@npm:3.1.1"
   checksum: 55cd7a9dd4b343412a8386a743f9c746ef196e57c823d90ca3ab917f90ab9f13dd0ded27252ba49dbdfcab2b091d998bc446f6220cd3cea65db407502a740020
-  languageName: node
-  linkType: hard
-
-"path-parse@npm:^1.0.5":
-  version: 1.0.6
-  resolution: "path-parse@npm:1.0.6"
-  checksum: 962a85dd384d68d469ec5ba4010df8f8f9b7e936ce603bbe3211476c5615feb3c2b1ca61211a78445fadc833f0b1a86ea6484c861035ec4ac93011ba9aff9a11
   languageName: node
   linkType: hard
 
@@ -9468,7 +9461,7 @@ dynastic-provider@dynastic/accounts-provider.git:
   version: 1.8.1
   resolution: "resolve@npm:1.8.1"
   dependencies:
-    path-parse: ^1.0.5
+    path-parse: ^1.0.7
   checksum: ae930cb4a64ec46582358f64fa97038b52168de1374bf694866e39d92090077ba3f780ef4670f6adffbae888659a343417ee3916cbf57ba998f597f7209855fc
   languageName: node
   linkType: hard
@@ -9503,7 +9496,7 @@ dynastic-provider@dynastic/accounts-provider.git:
   version: 1.8.1
   resolution: "resolve@patch:resolve@npm%3A1.8.1#~builtin<compat/resolve>::version=1.8.1&hash=07638b"
   dependencies:
-    path-parse: ^1.0.5
+    path-parse: ^1.0.7
   checksum: b7e0748492c5c5a3bacd94b8ef8f52b529dbfea264ed560f352cb5c93ebc92bd8ab072843ff3af775133bdfa3d4b80d3b5a49382ff7457d026e97e2925410fc3
   languageName: node
   linkType: hard
@@ -10696,9 +10689,9 @@ dynastic-provider@dynastic/accounts-provider.git:
   languageName: node
   linkType: hard
 
-"trim@npm:0.0.1":
-  version: 0.0.1
-  resolution: "trim@npm:0.0.1"
+"trim@npm:0.0.3":
+  version: 0.0.3
+  resolution: "trim@npm:0.0.3"
   checksum: 2b4646dff99a222e8e1526edd4e3a43bbd925af0b8e837c340455d250157e7deefaa4da49bb891ab841e5c27b1afc5e9e32d4b57afb875d2dfcabf4e319b8f7f
   languageName: node
   linkType: hard
