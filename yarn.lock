@@ -689,9 +689,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"acorn@npm:5.X, acorn@npm:^5.0.3":
-  version: 5.7.3
-  resolution: "acorn@npm:5.7.3"
+"acorn@npm:5.X, acorn@npm:^5.7.4":
+  version: 5.7.4
+  resolution: "acorn@npm:5.7.4"
   bin:
     acorn: ./bin/acorn
   checksum: 892b3066f7c01f24aed6fc5573e7303a6b63fc6d5290d9ea627597cdf6ca95e58af8a4e92fd747c3a2698505bc042d59fc37da658675c142c5a10281ab8a5814
@@ -716,9 +716,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"acorn@npm:^6.0.1":
-  version: 6.0.2
-  resolution: "acorn@npm:6.0.2"
+"acorn@npm:^6.4.1":
+  version: 6.4.1
+  resolution: "acorn@npm:6.4.1"
   bin:
     acorn: ./bin/acorn
   checksum: 29fdff1e207babae0b42dfac601ee32300a0476da51554616634f47250d1b88630b2b7111801b9de973823684cd6661ffeccfc5d77954021ea7c1fd185a3da65
