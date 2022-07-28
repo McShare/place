@@ -2321,7 +2321,7 @@ __metadata:
     readable-stream: ^2.0.2
     resolve: ^1.1.4
     shasum-object: ^1.0.0
-    shell-quote: ^1.6.1
+    shell-quote: ^1.7.3
     stream-browserify: ^3.0.0
     stream-http: ^3.0.0
     string_decoder: ^1.1.1
@@ -9860,9 +9860,9 @@ dynastic-provider@dynastic/accounts-provider.git:
   languageName: node
   linkType: hard
 
-"shell-quote@npm:^1.6.1":
-  version: 1.6.1
-  resolution: "shell-quote@npm:1.6.1"
+"shell-quote@npm:^1.7.3":
+  version: 1.7.3
+  resolution: "shell-quote@npm:1.7.3"
   dependencies:
     array-filter: ~0.0.0
     array-map: ~0.0.0
