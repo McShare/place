@@ -7317,7 +7317,7 @@ dynastic-provider@dynastic/accounts-provider.git:
   version: 3.2.7
   resolution: "mongodb-core@npm:3.2.7"
   dependencies:
-    bson: ^1.1.1
+    bson: ^1.1.4
     require_optional: ^1.0.1
     safe-buffer: ^5.1.2
     saslprep: ^1.0.0
