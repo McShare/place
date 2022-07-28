@@ -5332,9 +5332,9 @@ dynastic-provider@dynastic/accounts-provider.git:
   languageName: node
   linkType: hard
 
-"helmet-csp@npm:2.7.1":
-  version: 2.7.1
-  resolution: "helmet-csp@npm:2.7.1"
+"helmet-csp@npm:2.9.1":
+  version: 2.9.1
+  resolution: "helmet-csp@npm:2.9.1"
   dependencies:
     camelize: 1.0.0
     content-security-policy-builder: 2.0.0
@@ -5354,7 +5354,7 @@ dynastic-provider@dynastic/accounts-provider.git:
     feature-policy: 0.1.0
     frameguard: 3.0.0
     helmet-crossdomain: 0.3.0
-    helmet-csp: 2.7.1
+    helmet-csp: 2.9.1
     hide-powered-by: 1.0.0
     hpkp: 2.0.0
     hsts: 2.1.0
