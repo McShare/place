@@ -8604,7 +8604,7 @@ dynastic-provider@dynastic/accounts-provider.git:
     passport-microsoft: ^0.0.5
     passport-reddit: ^0.2.4
     passport-twitter: ^1.0.4
-    pug: ^2.0.0-rc.3
+    pug: ^3.0.1
     pump: ^1.0.2
     qrcode: ^0.9.0
     raven: ^2.1.0
@@ -8794,9 +8794,9 @@ dynastic-provider@dynastic/accounts-provider.git:
   languageName: node
   linkType: hard
 
-"pug-code-gen@npm:^2.0.1":
-  version: 2.0.1
-  resolution: "pug-code-gen@npm:2.0.1"
+"pug-code-gen@npm:^2.0.3":
+  version: 2.0.3
+  resolution: "pug-code-gen@npm:2.0.3"
   dependencies:
     constantinople: ^3.0.1
     doctypes: ^1.1.0
@@ -8896,11 +8896,11 @@ dynastic-provider@dynastic/accounts-provider.git:
   languageName: node
   linkType: hard
 
-"pug@npm:^2.0.0-rc.3":
-  version: 2.0.3
-  resolution: "pug@npm:2.0.3"
+"pug@npm:^3.0.1":
+  version: 3.0.1
+  resolution: "pug@npm:3.0.1"
   dependencies:
-    pug-code-gen: ^2.0.1
+    pug-code-gen: ^2.0.3
     pug-filters: ^3.1.0
     pug-lexer: ^4.0.0
     pug-linker: ^3.0.5
