@@ -2467,7 +2467,7 @@ __metadata:
     get-value: ^2.0.6
     has-value: ^1.0.0
     isobject: ^3.0.1
-    set-value: ^2.0.0
+    set-value: ^2.0.1
     to-object-path: ^0.3.0
     union-value: ^1.0.0
     unset-value: ^1.0.0
@@ -9785,9 +9785,9 @@ dynastic-provider@dynastic/accounts-provider.git:
   languageName: node
   linkType: hard
 
-"set-value@npm:^0.4.3":
-  version: 0.4.3
-  resolution: "set-value@npm:0.4.3"
+"set-value@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "set-value@npm:2.0.1"
   dependencies:
     extend-shallow: ^2.0.1
     is-extendable: ^0.1.1
@@ -9797,9 +9797,9 @@ dynastic-provider@dynastic/accounts-provider.git:
   languageName: node
   linkType: hard
 
-"set-value@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "set-value@npm:2.0.0"
+"set-value@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "set-value@npm:2.0.1"
   dependencies:
     extend-shallow: ^2.0.1
     is-extendable: ^0.1.1
@@ -10940,7 +10940,7 @@ dynastic-provider@dynastic/accounts-provider.git:
     arr-union: ^3.1.0
     get-value: ^2.0.6
     is-extendable: ^0.1.1
-    set-value: ^0.4.3
+    set-value: ^2.0.1
   checksum: 42b96cecaa4f87a2d19c9031a43350f4b7eb977e2ff153e4c0703918b94701b004c6020648b314dc451285b2b9e3658aa177a2ec56d2c26b40679629e8b79a0a
   languageName: node
   linkType: hard
