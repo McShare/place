@@ -30,7 +30,7 @@ class ChangelogManager {
                     }
                 });
                 this.changelogs = changelogs.sort((a, b) => b.version - a.version);
-                this.app.logger.info("变更日志", `已成功加载 ${changelogs.length} changelog${changelogs.length == 1 ? "" : "s"}!`);
+                this.app.logger.info("变更日志", `已成功加载 ${changelogs.length} 个变更日志！`);
                 setTimeout(() => this._fetchChangelogs(), 30000);
             });
         } else {

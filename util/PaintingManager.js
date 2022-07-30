@@ -49,14 +49,14 @@ function PaintingManager(app) {
                 }
                 this.getStartingImage().then(async ({image, canServe, skipImmediateCache}) => {
                     if (canServe) {
-                        app.logger.info("Startup", `Got initially serveable image, serving...`);
+                        app.logger.info("启动", `得到了最初可用的图像，传输中...`);
                         this.pixelsToPreserve = [];
                         await serveImage(image, skipImmediateCache);
                     }
                     Pixel.count({}).then((count) => {
                         var loaded = 0;
                         var progressUpdater = setInterval(() => {
-                            app.logger.info("Startup", `Loaded ${loaded.toLocaleString()} of ${count.toLocaleString()} pixel${count == 1 ? "" : "s"} (${Math.round(loaded / count * 100)}% complete)`);
+                            app.logger.info("启动", `已加载 ${loaded.toLocaleString()}/${count.toLocaleString()} 个像素，完成度（${Math.round(loaded / count * 100)}%）`);
                         }, 2500);
                         Pixel.find({}).cursor().on("data", (pixel) => {
                             const x = pixel.xPos, y = pixel.yPos;
@@ -65,10 +65,10 @@ function PaintingManager(app) {
                             loaded++;
                         }).on("end", () => {
                             clearInterval(progressUpdater);
-                            app.logger.info("Startup", `Loaded total ${count.toLocaleString()} pixel${count == 1 ? "" : "s"} pixels from database. Applying to image...`);
+                            app.logger.info("启动", `总计从数据库中加载了 ${count.toLocaleString()} 个像素。应用于图像中……`);
                             if (this.pixelsToPreserve) this.pixelsToPreserve.forEach((data) => image.setPixelColor(data.colour, data.x, data.y));
                             this.pixelsToPreserve = null;
-                            app.logger.info("Startup", `Applied pixels to image. Serving image...`);
+                            app.logger.info("启动", `将像素应用于图像。图像传输中...`);
                             serveImage(image);
                         }).on("error", (err) => {
                             this.pixelsToPreserve = null;
@@ -109,18 +109,18 @@ function PaintingManager(app) {
                         a.outputImage = buffer;
                         if (!skipImmediateCache) {
                             fs.writeFile(temporaryCachedImagePath, buffer, (err) => {
-                                if (err) return app.logger.error("Painting Manager", "Couldn't save cached board image, got error:", err);
+                                if (err) return app.logger.error("绘制管理", "无法保存缓存画板图像，获取错误：", err);
                                 if (fs.existsSync(cachedImagePath)) fs.unlinkSync(cachedImagePath);
                                 fs.rename(temporaryCachedImagePath, cachedImagePath, (err) => { 
-                                    if (err) return app.logger.error("Painting Manager", "Couldn't move cached board image into place, got error:", err)
-                                    app.logger.info("Painting Manager", "Saved cached board image successfully!");
+                                    if (err) return app.logger.error("绘制管理", "无法移动缓存画板图像到适当的位置，获取错误:", err)
+                                    app.logger.info("绘制管理", "成功保存缓存的画板图像！");
                                 })
                             });
                         }
                         a.waitingForImages.forEach((callback) => callback(null, buffer));
                         a.waitingForImages = [];
                     }).catch((err) => {
-                        app.logger.error("Could not generate output image:", err);
+                        app.logger.error("无法生成输出图像：", err);
                         a.waitingForImages.forEach((callback) => callback(err, null));
                         a.waitingForImages = [];
                     }).then(() => {
@@ -147,8 +147,8 @@ function PaintingManager(app) {
         doPaint: function(colour, x, y, user) {
             var a = this;
             return new Promise((resolve, reject) => {
-                if (!this.hasImage) return reject({message: "Our servers are currently getting ready. Please try again in a moment.", code: "not_ready"});
-                if (app.temporaryUserInfo.isUserPlacing(user)) return reject({message: "You cannot place more than one tile at once.", code: "attempted_overload"});
+                if (!this.hasImage) return reject({message: "我们的服务器目前正在准备中。请稍候再试一次。", code: "not_ready"});
+                if (app.temporaryUserInfo.isUserPlacing(user)) return reject({message: "你不能一次放置多个标题。", code: "attempted_overload"});
                 app.temporaryUserInfo.setUserPlacing(user, true);
                 // Add to DB:
                 user.addPixel(colour, x, y, app, (changed, err) => {
@@ -171,10 +171,10 @@ function PaintingManager(app) {
 
         startTimer: function() {
             setInterval(() => {
-                if (this.pixelsToPreserve) return app.logger.log("Painting Manager", "Will not start board image update, as board image is still being completely loaded...");
-                if (this.isGenerating) return app.logger.log("Painting Manager", "Will not start board image update, as board image is still being generated...");
-                if (!this.imageHasChanged) return app.logger.log("Painting Manager", "Not updating board image, no changes since last update.");
-                app.logger.log("Painting Manager", "Starting board image update...");
+                if (this.pixelsToPreserve) return app.logger.log("绘制管理", "不会开始画板图像更新，因为画板图像仍在整体加载中…");
+                if (this.isGenerating) return app.logger.log("绘制管理", "不会开始更新画板图像，因为画板图像仍在生成中…");
+                if (!this.imageHasChanged) return app.logger.log("绘制管理", "没有更新画板图像，自上次更新以来没有变动。");
+                app.logger.log("绘制管理", "开始更新画板图像…");
                 this.generateOutputImage();
             }, regenerationInterval * 1000);
         }

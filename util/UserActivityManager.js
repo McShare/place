@@ -10,7 +10,7 @@ function UserActivityManager(app) {
                 obj[key] = this.userActivityTimes[key];
                 return obj;
             }, {});
-            app.logger.log('User Activity', "Updated user activity manager stored data.")
+            app.logger.log('用户活动', "更新用户活动管理器存储的数据。")
         },
 
         recordActivity: function(user) {
