@@ -27,9 +27,9 @@ app.loadConfig = (path = "./config/config") => {
     var oldConfig = app.config;
     app.config = require(path);
     app.colours = [... new Set((app.config.colours || ["#FFFFFF", "#E4E4E4", "#888888", "#222222", "#FFA7D1", "#E50000", "#E59500", "#A06A42", "#E5D900", "#94E044", "#02BE01", "#00D3DD", "#0083C7", "#0000EA", "#CF6EE4", "#820080"]).map((c) => c.toUpperCase()))];
-    if(!app.config.siteName) app.config.siteName = "Place";
+    if(!app.config.siteName) app.config.siteName = "MineBBS像素画板";
     if(!app.config.enableChangelogs) app.config.enableChangelogs = true;
-    if(!app.config.boardSize) app.config.boardSize = 1600; // default to 1600 if not specified in config
+    if(!app.config.boardSize) app.config.boardSize = 800; // default to 1600 if not specified in config
     if(oldConfig && (oldConfig.secret != app.config.secret || oldConfig.database != app.config.database || oldConfig.boardSize != app.config.boardSize)) {
         app.logger.log("配置", "我们正在停止 Place 服务器，因为数据库 URL、密码和/或板图像大小已更改，这将需要重新启动整个服务器。");
         process.exit(0);
@@ -112,7 +112,7 @@ async function connectToDb() {
       }
 
     if (mongoose.connection.readyState === 1) {
-     console.log("Successfully connected to database");
+     console.log("成功连接至数据库");
     }
 }
 connectToDb().then(function(data) {
@@ -130,7 +130,7 @@ const handlePendingDeletions = () => {
 }
 
 mongoose.connection.on('error', err => {
-    app.logger.log('DB Connection', err);
+    app.logger.log('数据库连接', err);
   });
 
 mongoose.connection.once('connected', () => {
