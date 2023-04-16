@@ -1,6 +1,6 @@
 const path = require("path");
 const fs = require("fs");
-const marked = require("./Markdown")
+const marked = require("./Markdown");
 
 const changelogsPath = path.join(__dirname, "..", "changelogs");
 
@@ -78,7 +78,7 @@ class ChangelogManager {
         var versions = this.getChangelogVersions();
         var previous = versions.filter((c) => c < version)[0];
         var next = forceDisableNext ? null : versions.filter((c) => c > version).slice(-1).pop();
-        return {next: next, previous: previous}
+        return {next: next, previous: previous};
     }
 }
 
