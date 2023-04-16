@@ -68,7 +68,7 @@
     "md5": "^2.3.0",
     "mongoose": "^7.0.3",
     "mongoose-datatables": "3.2.0",
-    "morgan": "^1.10.1",
+    "morgan": "^1.10.0",
     "passport": "^0.3.2",
     "passport-discord": "^0.1.4",
     "passport-facebook": "^3.0.0",
