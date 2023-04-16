@@ -45,7 +45,7 @@
     "cachet-api": "^1.0.11",
     "cookie-session": "^2.0.0",
     "core-js": "^3.30.1",
-    "csrf": "^3.1.0",
+    "csurf": "^1.11.0",
     "del": "^2.2.2",
     "dynastic-provider": "dynastic/accounts-provider.git",
     "eslint-plugin-import": "^2.27.5",
