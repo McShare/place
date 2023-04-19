@@ -175,7 +175,7 @@ html(lang="zh")
       script(src="https://cdn.bootcdn.net/ajax/libs/raven.js/raven-js@3.27.0/raven.min.js", crossorigin="anonymous")
       script.
           Raven.config('#{config.publicRaven}').install();
-    - js.unshift("/js/js.cookie.min.js", "/js/cookies-eu-banner.min.js", "/js/build/site.js");
+    - js.unshift("/js/js.cookie.min.js", "/js/cookies-eu-banner.min.js", "/js/site.js");
     each item in [...new Set(js)]
         script(src=item + "?v=" + resourceVersion)
     each item in [...new Set(jsSnippets.concat(jsModSnippets))]
